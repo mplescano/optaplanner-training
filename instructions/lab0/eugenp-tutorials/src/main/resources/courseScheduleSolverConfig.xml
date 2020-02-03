@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+  <solutionClass>com.baeldung.optaplanner.domain.CourseSchedule</solutionClass>
+  <entityClass>com.baeldung.optaplanner.domain.Lecture</entityClass>
+
+  <scoreDirectorFactory>
+    <easyScoreCalculatorClass>com.baeldung.optaplanner.solver.score.ScoreCalculator</easyScoreCalculatorClass>
+  </scoreDirectorFactory>
+
+  <termination>
+    <secondsSpentLimit>10</secondsSpentLimit>
+  </termination>
+
+</solver>

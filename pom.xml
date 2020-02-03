@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.optaplanner.training</groupId>
+  <artifactId>optaplanner-training</artifactId>
+  <packaging>pom</packaging>
+  <!-- Keep in sync with optaplanner-training-generator/build.xml project.version -->
+  <!-- Keep in sync with child module pom.xml's parent's version -->
+  <!-- Keep in sync with dependency kie-platform-bom's version -->
+  <version>7.0.0.Beta4-training-4</version>
+
+  <name>OptaPlanner training</name>
+  <description>
+    OptaPlanner solves planning problems.
+    This lightweight, embeddable planning engine implements powerful and scalable algorithms
+    to optimize business resource scheduling and planning.
+
+    This module contains the training labs.
+  </description>
+
+  <repositories>
+    <!-- Included so it builds out-of-the-box with maven, even for snapshots -->
+    <repository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>jboss-public-repository-group-2</id>
+      <name>JBoss Public Repository Group 2</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/public/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.5.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <fork>true</fork>
+            <meminitial>128m</meminitial>
+            <maxmem>512m</maxmem>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-platform-bom</artifactId>
+        <type>pom</type>
+        <!-- Keep in sync with part of project version -->
+        <version>7.32.0.Final</version>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.optaplanner</groupId>
+        <artifactId>optaplanner</artifactId>
+        <version>7.32.0.Final</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.optaplanner</groupId>
+        <artifactId>optaplanner-training-lab101</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.optaplanner</groupId>
+        <artifactId>optaplanner-training-assembly</artifactId>
+        <type>pom</type>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>optaplanner-training-lab101</module>
+    <module>optaplanner-training-lab101-solution</module>
+    <module>optaplanner-training-lab102</module>
+    <module>optaplanner-training-lab102-solution</module>
+    <module>optaplanner-training-lab103</module>
+    <module>optaplanner-training-lab103-solution</module>
+    <module>optaplanner-training-lab901</module>
+    <module>optaplanner-training-lab901-solution</module>
+    <module>optaplanner-training-lab902</module>
+    <module>optaplanner-training-lab902-solution</module>
+    <module>optaplanner-training-lab903</module>
+  </modules>
+
+  <profiles>
+    <profile>
+      <id>fullProfile</id>
+      <activation>
+        <property>
+          <name>full</name>
+        </property>
+      </activation>
+      <modules>
+        <module>optaplanner-training-docs</module>
+        <module>optaplanner-training-assembly</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>productizedProfile</id>
+      <activation>
+        <property>
+          <name>productized</name>
+        </property>
+      </activation>
+      <properties>
+        <!-- TODO Use this to generate a training zip distribution that uses the product artifacts -->
+        <optaplanner.maven.repository.url>http://maven.repository.redhat.com/techpreview/all</optaplanner.maven.repository.url>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>
+
