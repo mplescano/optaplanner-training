@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent><groupId>org.optaplanner.training</groupId><artifactId>optaplanner-training</artifactId><version>7.0.0.Beta4-training-4</version></parent>
 
-  <artifactId>optaplanner-training-lab101</artifactId>
+  <artifactId>ge0ffrey-coursera-discrete-optimization</artifactId>
 
   <name>ge0ffrey-coursera-discrete-optimization</name>
   <description>ge0ffrey-coursera-discrete-optimization</description>
