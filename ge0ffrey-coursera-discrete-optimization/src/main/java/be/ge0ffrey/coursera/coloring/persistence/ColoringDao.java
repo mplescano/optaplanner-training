@@ -17,12 +17,14 @@
 package be.ge0ffrey.coursera.coloring.persistence;
 
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
-import org.optaplanner.examples.common.persistence.XStreamSolutionDao;
 
-public class ColoringDao extends XStreamSolutionDao {
+import org.optaplanner.core.api.domain.solution.Solution;
+import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
+
+public class ColoringDao extends XStreamSolutionFileIO<Solution> {
 
     public ColoringDao() {
-        super("coloring", ColoringSolution.class);
+        super(ColoringSolution.class);
     }
 
 }

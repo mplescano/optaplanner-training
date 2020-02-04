@@ -81,9 +81,9 @@ public class ElectionIncrementalScoreCalculator implements IncrementalScoreCalcu
     }
 
     @Override
-    public Score calculateScore(int initScore) {
+    public Score calculateScore() {
         int hardScore = (gamerCandidateWins >= 270) ? 0 : (gamerCandidateWins - 270);
-        return HardSoftScore.valueOf(initScore, hardScore, -gamerMinimumPopulation);
+        return HardSoftScore.of(hardScore, -gamerMinimumPopulation);
     }
 
 }

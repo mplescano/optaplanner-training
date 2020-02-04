@@ -18,7 +18,7 @@ package be.ge0ffrey.coursera.tsp.persistence;
 
 import java.io.IOException;
 
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
 import org.optaplanner.examples.tsp.domain.Standstill;
 import org.optaplanner.examples.tsp.domain.TravelingSalesmanTour;
@@ -57,7 +57,7 @@ public class CourseraTspExporter extends AbstractTxtSolutionExporter {
             bufferedWriter.write((- solution.getScore().getScore() / 1000L) + " 0\n");
             Standstill standstill = solution.getDomicile();
             while (standstill != null) {
-                bufferedWriter.write(standstill.getCity().getId() + " ");
+                bufferedWriter.write(standstill.getLocation().getId() + " ");
                 standstill = findNextVisit(standstill);
             }
             bufferedWriter.write("\n");

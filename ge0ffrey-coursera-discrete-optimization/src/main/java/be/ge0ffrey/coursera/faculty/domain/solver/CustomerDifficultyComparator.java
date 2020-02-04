@@ -19,8 +19,10 @@ package be.ge0ffrey.coursera.faculty.domain.solver;
 import java.io.Serializable;
 import java.util.Comparator;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
+
 import be.ge0ffrey.coursera.faculty.domain.Customer;
-import org.apache.commons.lang.builder.CompareToBuilder;
+
 
 public class CustomerDifficultyComparator implements Comparator<Customer>, Serializable {
 

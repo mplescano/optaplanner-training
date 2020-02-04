@@ -25,7 +25,7 @@ import org.optaplanner.training.election.domain.FederalState;
 public class ElectionEasyScoreCalculator implements EasyScoreCalculator<Election> {
 
     @Override
-    public Score calculateScore(Election election, int initScore) {
+    public Score calculateScore(Election election) {
         int gamerCandidateWins = 0;
         int gamerMinimumPopulation = 0;
         for (FederalState federalState : election.getFederalStateList()) {
@@ -35,7 +35,7 @@ public class ElectionEasyScoreCalculator implements EasyScoreCalculator<Election
             }
         }
         int hardScore = (gamerCandidateWins >= 270) ? 0 : (gamerCandidateWins - 270);
-        return HardSoftScore.valueOf(initScore, hardScore, -gamerMinimumPopulation);
+        return HardSoftScore.of(hardScore, -gamerMinimumPopulation);
     }
 
 }

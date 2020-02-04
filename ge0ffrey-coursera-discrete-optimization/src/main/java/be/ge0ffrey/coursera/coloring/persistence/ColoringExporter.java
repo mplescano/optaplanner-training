@@ -18,22 +18,24 @@ package be.ge0ffrey.coursera.coloring.persistence;
 
 import java.io.IOException;
 
+import be.ge0ffrey.coursera.coloring.app.ColoringApp;
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
+import org.optaplanner.examples.common.persistence.SolutionConverter;
 
-public class ColoringExporter extends AbstractTxtSolutionExporter {
+public class ColoringExporter extends AbstractTxtSolutionExporter<ColoringSolution> {
 
     private static final String OUTPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
         new ColoringExporter().convertAll();
-    }
-
-    public ColoringExporter() {
-        super(new ColoringDao());
+        
+        SolutionConverter<ColoringSolution> converter = SolutionConverter.createExportConverter(
+            ColoringApp.DATA_DIR_NAME, new ColoringExporter(), ColoringSolution.class);
+    converter.convertAll();
     }
 
     @Override

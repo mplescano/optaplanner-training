@@ -50,6 +50,19 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>jboss-public-repository-group-3</id>
+      <name>JBoss Public Repository Group 3</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/ea/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
   </repositories>
 
   <build>
@@ -114,6 +127,10 @@
     <module>optaplanner-training-lab902</module>
     <module>optaplanner-training-lab902-solution</module>
     <module>optaplanner-training-lab903</module>
+    <module>ge0ffrey-coursera-discrete-optimization</module>
+    <module>instructions/lab0/eugenp-tutorials</module>
+    <module>instructions/lab0/nqueens</module>
+    <module>instructions/lab2/cloud-balancing-tutorial</module>
   </modules>
 
   <profiles>

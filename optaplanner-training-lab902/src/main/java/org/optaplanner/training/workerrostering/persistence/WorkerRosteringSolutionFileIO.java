@@ -39,6 +39,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
@@ -312,7 +313,7 @@ public class WorkerRosteringSolutionFileIO implements SolutionFileIO<Roster> {
 
         private boolean hasStyle(Cell cell, IndexedColors color) {
             return cell.getCellStyle().getFillForegroundColor() == color.getIndex()
-                    && cell.getCellStyle().getFillPattern() == CellStyle.SOLID_FOREGROUND;
+                    && cell.getCellStyle().getFillPatternEnum() == FillPatternType.SOLID_FOREGROUND;
         }
 
     }
@@ -477,7 +478,7 @@ public class WorkerRosteringSolutionFileIO implements SolutionFileIO<Roster> {
         private CellStyle createStyle(IndexedColors color) {
             CellStyle style = workbook.createCellStyle();
             style.setFillForegroundColor(color.getIndex());
-            style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             return style;
         }
 

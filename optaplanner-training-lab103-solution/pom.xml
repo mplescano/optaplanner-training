@@ -99,10 +99,10 @@
       <groupId>org.jfree</groupId>
       <artifactId>jfreechart</artifactId>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.jfree</groupId>
       <artifactId>jcommon</artifactId>
-    </dependency>
+    </dependency>-->
     <!-- Common utils -->
     <dependency>
       <groupId>org.apache.commons</groupId>

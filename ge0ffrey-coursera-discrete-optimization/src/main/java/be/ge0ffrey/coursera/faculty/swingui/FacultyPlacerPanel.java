@@ -17,10 +17,11 @@
 package be.ge0ffrey.coursera.faculty.swingui;
 
 import be.ge0ffrey.coursera.faculty.domain.FacultyPlacerSolution;
-import org.optaplanner.core.impl.solution.Solution;
+
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 
-public class FacultyPlacerPanel extends SolutionPanel {
+public class FacultyPlacerPanel extends SolutionPanel<Solution> {
 
     public FacultyPlacerPanel() {
     }

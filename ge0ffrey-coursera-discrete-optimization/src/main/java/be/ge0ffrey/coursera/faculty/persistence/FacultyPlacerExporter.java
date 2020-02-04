@@ -20,12 +20,11 @@ import java.io.IOException;
 
 import be.ge0ffrey.coursera.faculty.domain.Customer;
 import be.ge0ffrey.coursera.faculty.domain.FacultyPlacerSolution;
-import be.ge0ffrey.coursera.knapsack.domain.Item;
-import be.ge0ffrey.coursera.knapsack.domain.Knapsack;
-import org.optaplanner.core.impl.solution.Solution;
+
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
 
-public class FacultyPlacerExporter extends AbstractTxtSolutionExporter {
+public class FacultyPlacerExporter extends AbstractTxtSolutionExporter<Solution> {
 
     private static final String OUTPUT_FILE_SUFFIX = "txt";
 

@@ -25,13 +25,11 @@ import be.ge0ffrey.coursera.faculty.domain.Customer;
 import be.ge0ffrey.coursera.faculty.domain.Faculty;
 import be.ge0ffrey.coursera.faculty.domain.FacultyPlacerSolution;
 import be.ge0ffrey.coursera.faculty.domain.Location;
-import be.ge0ffrey.coursera.knapsack.domain.Item;
-import be.ge0ffrey.coursera.knapsack.domain.Knapsack;
 import org.apache.commons.io.FilenameUtils;
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 
-public class FacultyPlacerImporter extends AbstractTxtSolutionImporter {
+public class FacultyPlacerImporter extends AbstractTxtSolutionImporter<Solution> {
 
     private static final String INPUT_FILE_SUFFIX = "txt";
 

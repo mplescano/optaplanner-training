@@ -22,12 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
-import org.optaplanner.examples.tsp.domain.City;
 import org.optaplanner.examples.tsp.domain.Domicile;
 import org.optaplanner.examples.tsp.domain.TravelingSalesmanTour;
 import org.optaplanner.examples.tsp.domain.Visit;
+import org.optaplanner.examples.tsp.domain.location.Location;
+import org.optaplanner.examples.tsp.domain.location.RoadLocation;
 
 public class CourseraTspImporter extends AbstractTxtSolutionImporter {
 
@@ -68,10 +69,10 @@ public class CourseraTspImporter extends AbstractTxtSolutionImporter {
                 cityListSize = Integer.parseInt(firstLine.trim());
                 readCourseraFormat();
             }
-            BigInteger possibleSolutionSize = factorial(travelingSalesmanTour.getCityList().size() - 1);
+            BigInteger possibleSolutionSize = factorial(travelingSalesmanTour.getLocationList().size() - 1);
             logger.info("TravelingSalesmanTour {} has {} cities with a search space of {}.",
                     getInputId(),
-                    travelingSalesmanTour.getCityList().size(),
+                    travelingSalesmanTour.getLocationList().size(),
                     getFlooredPossibleSolutionSize(possibleSolutionSize));
             return travelingSalesmanTour;
         }
@@ -99,11 +100,11 @@ public class CourseraTspImporter extends AbstractTxtSolutionImporter {
 
         private void readTspLibCityList() throws IOException {
             readConstantLine("NODE_COORD_SECTION");
-            List<City> cityList = new ArrayList<City>(cityListSize);
+            List<Location> cityList = new ArrayList<Location>(cityListSize);
             for (int i = 0; i < cityListSize; i++) {
                 String line = bufferedReader.readLine();
                 String[] lineTokens = splitBySpace(line, 3, 4);
-                City city = new City();
+                Location city = new RoadLocation();
                 city.setId(Long.parseLong(lineTokens[0]));
                 city.setLatitude(Double.parseDouble(lineTokens[1]));
                 city.setLongitude(Double.parseDouble(lineTokens[2]));
@@ -112,7 +113,7 @@ public class CourseraTspImporter extends AbstractTxtSolutionImporter {
                 }
                 cityList.add(city);
             }
-            travelingSalesmanTour.setCityList(cityList);
+            travelingSalesmanTour.setLocationList(cityList);
         }
 
         private void createVisitList() {

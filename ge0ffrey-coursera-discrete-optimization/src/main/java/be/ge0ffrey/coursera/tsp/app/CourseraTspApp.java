@@ -63,8 +63,8 @@ public class CourseraTspApp extends CommonApp {
     }
 
     @Override
-    protected AbstractSolutionImporter createSolutionImporter() {
-        return new CourseraTspImporter();
+    protected AbstractSolutionImporter[] createSolutionImporters() {
+        return new AbstractSolutionImporter[] {new CourseraTspImporter()};
     }
 
     @Override

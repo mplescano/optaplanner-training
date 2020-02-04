@@ -31,10 +31,6 @@ public class FlpImporter extends AbstractTxtSolutionImporter {
 
     private static final String INPUT_FILE_SUFFIX = "txt";
 
-    public FlpImporter() {
-        super(true);
-    }
-
     @Override
     public String getInputFileSuffix() {
         return INPUT_FILE_SUFFIX;

@@ -24,14 +24,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardsoftlong.HardSoftLongScore;
-import org.optaplanner.core.impl.score.buildin.hardsoftlong.HardSoftLongScoreDefinition;
-import org.optaplanner.core.impl.solution.Solution;
-import org.optaplanner.examples.cloudbalancing.domain.CloudComputer;
-import org.optaplanner.examples.cloudbalancing.domain.CloudProcess;
+
 import org.optaplanner.examples.common.domain.AbstractPersistable;
-import org.optaplanner.persistence.xstream.XStreamScoreConverter;
+import org.optaplanner.persistence.xstream.api.score.buildin.hardsoftlong.HardSoftLongScoreXStreamConverter;
 
 @PlanningSolution
 @XStreamAlias("FacultyPlacerSolution")
@@ -43,7 +41,7 @@ public class FacultyPlacerSolution extends AbstractPersistable implements Soluti
 
     private List<Customer> customerList;
 
-    @XStreamConverter(value = XStreamScoreConverter.class, types = {HardSoftLongScoreDefinition.class})
+    @XStreamConverter(HardSoftLongScoreXStreamConverter.class)
     private HardSoftLongScore score;
 
     public String getName() {

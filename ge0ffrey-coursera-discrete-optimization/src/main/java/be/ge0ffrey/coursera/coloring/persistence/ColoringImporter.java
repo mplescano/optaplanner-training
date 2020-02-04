@@ -38,10 +38,6 @@ public class ColoringImporter extends AbstractTxtSolutionImporter<Solution> {
         new ColoringImporter().convertAll();
     }
 
-    public ColoringImporter() {
-        super(new ColoringDao());
-    }
-
     @Override
     public String getInputFileSuffix() {
         return INPUT_FILE_SUFFIX;
