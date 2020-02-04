@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<solver>
+  <!--<environmentMode>FAST_ASSERT</environmentMode>-->
+
+  <!-- Domain model configuration -->
+  <solutionClass>be.ge0ffrey.coursera.knapsack.domain.Knapsack</solutionClass>
+  <planningEntityClass>be.ge0ffrey.coursera.knapsack.domain.Item</planningEntityClass>
+
+  <!-- Score configuration -->
+  <scoreDirectorFactory>
+    <scoreDefinitionType>HARD_MEDIUM_SOFT</scoreDefinitionType>
+    <!--<easyScoreCalculatorClass>be.ge0ffrey.coursera.knapsack.solver.score.KnapsackEasyScoreCalculator</easyScoreCalculatorClass>-->
+    <incrementalScoreCalculatorClass>be.ge0ffrey.coursera.knapsack.solver.score.KnapsackIncrementalScoreCalculator</incrementalScoreCalculatorClass>
+    <initializingScoreTrend>ONLY_DOWN/ONLY_UP/ONLY_DOWN</initializingScoreTrend>
+    <!--<assertionScoreDirectorFactory>-->
+      <!--<incrementalScoreCalculatorClass>be.ge0ffrey.coursera.knapsack.solver.score.KnapsackEasyScoreCalculator</incrementalScoreCalculatorClass>-->
+    <!--</assertionScoreDirectorFactory>-->
+  </scoreDirectorFactory>
+
+  <!-- Optimization algorithms configuration -->
+  <termination>
+    <minutesSpentLimit>120</minutesSpentLimit>
+  </termination>
+  <constructionHeuristic>
+    <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+  </constructionHeuristic>
+  <localSearch>
+    <moveIteratorFactory>
+      <moveIteratorFactoryClass>be.ge0ffrey.coursera.knapsack.solver.move.MultiItemInverseMoveIteratorFactory</moveIteratorFactoryClass>
+    </moveIteratorFactory>
+    <acceptor>
+      <entityTabuSize>7</entityTabuSize>
+    </acceptor>
+    <forager>
+      <acceptedCountLimit>1000</acceptedCountLimit>
+    </forager>
+    <!--<acceptor>-->
+      <!--<acceptorType>HILL_CLIMBING</acceptorType>-->
+    <!--</acceptor>-->
+    <!--<forager>-->
+      <!--<acceptedCountLimit>2000000000</acceptedCountLimit>-->
+      <!--<pickEarlyType>FIRST_LAST_STEP_SCORE_IMPROVING</pickEarlyType>-->
+    <!--</forager>-->
+  </localSearch>
+</solver>
