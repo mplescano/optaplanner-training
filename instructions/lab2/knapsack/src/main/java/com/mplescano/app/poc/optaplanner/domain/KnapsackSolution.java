@@ -16,6 +16,7 @@
 
 package com.mplescano.app.poc.optaplanner.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class KnapsackSolution {
   private List<Item> itemList;
 
   private HardMediumSoftScore score;
+
+  public KnapsackSolution() {
+    itemList = new ArrayList<>();
+  }
 
   public String getName() {
     return name;

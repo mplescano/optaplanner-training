@@ -15,51 +15,50 @@ import org.slf4j.LoggerFactory;
 @PlanningSolution
 public class CourseScheduleSolution {
 
-	Logger logger = LoggerFactory.getLogger(CourseScheduleSolution.class);
-	
-	private List<Integer> roomList;
-	
-	private List<Integer> periodList;
-	
-	private List<Lecture> lectureList;
-	
-	private HardSoftScore score;
+  Logger logger = LoggerFactory.getLogger(CourseScheduleSolution.class);
 
-	public CourseScheduleSolution() {
-		this.roomList = new ArrayList<>();
-		this.periodList = new ArrayList<>();
-		this.lectureList = new ArrayList<>();
-	}
-	
-	@ValueRangeProvider(id = "availableRooms")
-	@ProblemFactCollectionProperty
-	public List<Integer> getRoomList() {
-		return roomList;
-	}
+  private List<Integer> roomList;
 
-	@ValueRangeProvider(id = "availablePeriods")
-	@ProblemFactCollectionProperty
-	public List<Integer> getPeriodList() {
-		return periodList;
-	}
+  private List<Integer> periodList;
 
-	@PlanningEntityCollectionProperty
-	public List<Lecture> getLectureList() {
-		return lectureList;
-	}
+  private List<Lecture> lectureList;
 
-	@PlanningScore
-	public HardSoftScore getScore() {
-		return score;
-	}
+  private HardSoftScore score;
 
-	public void setScore(HardSoftScore score) {
-		this.score = score;
-	}
-	
-    public void printCourseSchedule() {
-        lectureList.stream()
-                .map(c -> "Lecture in Room " + c.getRoomNumber().toString() + " during Period " + c.getPeriod().toString())
-                .forEach(k -> logger.info(k));
-    }
+  public CourseScheduleSolution() {
+    this.roomList = new ArrayList<>();
+    this.periodList = new ArrayList<>();
+    this.lectureList = new ArrayList<>();
+  }
+
+  @ValueRangeProvider(id = "availableRooms")
+  @ProblemFactCollectionProperty
+  public List<Integer> getRoomList() {
+    return roomList;
+  }
+
+  @ValueRangeProvider(id = "availablePeriods")
+  @ProblemFactCollectionProperty
+  public List<Integer> getPeriodList() {
+    return periodList;
+  }
+
+  @PlanningEntityCollectionProperty
+  public List<Lecture> getLectureList() {
+    return lectureList;
+  }
+
+  @PlanningScore
+  public HardSoftScore getScore() {
+    return score;
+  }
+
+  public void setScore(HardSoftScore score) {
+    this.score = score;
+  }
+
+  public void printCourseSchedule() {
+    lectureList.stream().map(c -> "Lecture in Room " + c.getRoomNumber().toString() + " during Period " + c.getPeriod().toString())
+        .forEach(k -> logger.info(k));
+  }
 }
