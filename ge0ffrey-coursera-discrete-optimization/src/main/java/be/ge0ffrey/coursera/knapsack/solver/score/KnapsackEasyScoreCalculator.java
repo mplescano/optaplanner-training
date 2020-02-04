@@ -19,7 +19,6 @@ package be.ge0ffrey.coursera.knapsack.solver.score;
 import be.ge0ffrey.coursera.knapsack.domain.Item;
 import be.ge0ffrey.coursera.knapsack.domain.Knapsack;
 import org.optaplanner.core.api.score.buildin.hardmediumsoft.HardMediumSoftScore;
-import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 
 public class KnapsackEasyScoreCalculator implements EasyScoreCalculator<Knapsack> {
@@ -35,7 +34,7 @@ public class KnapsackEasyScoreCalculator implements EasyScoreCalculator<Knapsack
                 }
             }
         }
-        return HardMediumSoftScore.valueOf(free >= 0 ? 0 : free, valueTotal, free);
+        return HardMediumSoftScore.of(free >= 0 ? 0 : free, valueTotal, free);
     }
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+	<solutionClass>myoptaplannerexamples.knapsack.Knapsack</solutionClass>
+	<entityClass>myoptaplannerexamples.knapsack.Item</entityClass>
+	
+	<!-- Score configuration -->
+  	<scoreDirectorFactory>
+    	<easyScoreCalculatorClass>myoptaplannerexamples.knapsack.KnapsackScoreCalculator</easyScoreCalculatorClass>
+    	<initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
+  	</scoreDirectorFactory>
+
+  	<!-- 
+  	<constructionHeuristic>
+    	<constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+  	</constructionHeuristic>
+  	 -->
+  	<localSearch>
+	    <acceptor>
+    	  <entityTabuSize>7</entityTabuSize>
+    	</acceptor>
+    	<forager>
+      		<acceptedCountLimit>10</acceptedCountLimit>
+    	</forager>
+    	<termination>
+  			<terminationCompositionStyle>OR</terminationCompositionStyle>
+	    	<secondsSpentLimit>30</secondsSpentLimit>
+	    	<unimprovedSecondsSpentLimit>1</unimprovedSecondsSpentLimit>
+  		</termination>
+  	</localSearch>
+</solver>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.optaplanner.training</groupId>
+		<artifactId>optaplanner-training</artifactId>
+		<version>7.0.0.Beta4-training-4</version>
+		<relativePath>../../../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>optaplanner-training-lab2-knapsack-tutorial</artifactId>
+
+	<name>optaplanner-training-lab2-knapsack-tutorial</name>
+	<description>optaplanner-training-lab2-knapsack-tutorial</description>
+	<url>https://www.optaplanner.org</url>
+
+	<dependencies>
+		<!-- Internal dependencies -->
+		<dependency>
+			<groupId>org.optaplanner</groupId>
+			<artifactId>optaplanner-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.optaplanner</groupId>
+			<artifactId>optaplanner-persistence-common</artifactId>
+		</dependency>
+		<dependency><!-- Most examples use the XStream integration -->
+			<groupId>org.optaplanner</groupId>
+			<artifactId>optaplanner-persistence-xstream</artifactId>
+		</dependency>
+		<dependency><!-- Few examples use the JAXB integration -->
+			<groupId>org.optaplanner</groupId>
+			<artifactId>optaplanner-persistence-jaxb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.optaplanner</groupId>
+			<artifactId>optaplanner-benchmark</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.optaplanner</groupId>
+			<artifactId>optaplanner-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-decisiontables</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+</project>

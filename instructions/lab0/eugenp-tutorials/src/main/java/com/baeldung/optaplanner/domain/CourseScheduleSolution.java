@@ -13,9 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @PlanningSolution
-public class CourseSchedule {
+public class CourseScheduleSolution {
 
-	Logger logger = LoggerFactory.getLogger(CourseSchedule.class);
+	Logger logger = LoggerFactory.getLogger(CourseScheduleSolution.class);
 	
 	private List<Integer> roomList;
 	
@@ -25,7 +25,7 @@ public class CourseSchedule {
 	
 	private HardSoftScore score;
 
-	public CourseSchedule() {
+	public CourseScheduleSolution() {
 		this.roomList = new ArrayList<>();
 		this.periodList = new ArrayList<>();
 		this.lectureList = new ArrayList<>();

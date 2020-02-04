@@ -8,16 +8,16 @@ import org.junit.Test;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 
-import com.baeldung.optaplanner.domain.CourseSchedule;
+import com.baeldung.optaplanner.domain.CourseScheduleSolution;
 import com.baeldung.optaplanner.domain.Lecture;
 
 public class OptaPlannerUnitTest {
 
-	static CourseSchedule unsolvedCourseSchedule;
+	static CourseScheduleSolution unsolvedCourseSchedule;
 
 	@BeforeClass
 	public static void setUp() {
-		unsolvedCourseSchedule = new CourseSchedule();
+		unsolvedCourseSchedule = new CourseScheduleSolution();
 
 		for (int i = 0; i < 10; i++) {
 			unsolvedCourseSchedule.getLectureList().add(new Lecture());
@@ -29,10 +29,10 @@ public class OptaPlannerUnitTest {
 
 	@Test
 	public void test_whenCustomJavaSolver() {
-		SolverFactory<CourseSchedule> solverFactory = SolverFactory
+		SolverFactory<CourseScheduleSolution> solverFactory = SolverFactory
 				.createFromXmlResource("courseScheduleSolverConfig.xml");
-		Solver<CourseSchedule> solverCourseSchedule = solverFactory.buildSolver();
-		CourseSchedule solvedCourseSchedule = solverCourseSchedule.solve(unsolvedCourseSchedule);
+		Solver<CourseScheduleSolution> solverCourseSchedule = solverFactory.buildSolver();
+		CourseScheduleSolution solvedCourseSchedule = solverCourseSchedule.solve(unsolvedCourseSchedule);
 
 		Assert.assertNotNull("Score must not be null", solvedCourseSchedule.getScore());
 		Assert.assertEquals("", -4, solvedCourseSchedule.getScore().getHardScore());

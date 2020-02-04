@@ -30,7 +30,7 @@
       <layout>default</layout>
       <releases>
         <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
+        <updatePolicy>always</updatePolicy>
       </releases>
       <snapshots>
         <enabled>true</enabled>
@@ -44,7 +44,7 @@
       <layout>default</layout>
       <releases>
         <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
+        <updatePolicy>always</updatePolicy>
       </releases>
       <snapshots>
         <enabled>false</enabled>
@@ -57,7 +57,20 @@
       <layout>default</layout>
       <releases>
         <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>maven-central</id>
+      <name>maven central</name>
+      <url>https://repo1.maven.org/maven2/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
       </releases>
       <snapshots>
         <enabled>false</enabled>

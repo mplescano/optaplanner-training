@@ -31,11 +31,9 @@ public class ColoringExporter extends AbstractTxtSolutionExporter<ColoringSoluti
     private static final String OUTPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
-        new ColoringExporter().convertAll();
-        
         SolutionConverter<ColoringSolution> converter = SolutionConverter.createExportConverter(
-            ColoringApp.DATA_DIR_NAME, new ColoringExporter(), ColoringSolution.class);
-    converter.convertAll();
+            "DATA_DIR_NAME", ColoringSolution.class, new ColoringExporter());
+        converter.convertAll();
     }
 
     @Override

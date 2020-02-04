@@ -7,13 +7,13 @@ import org.optaplanner.core.api.score.Score;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 
-import com.baeldung.optaplanner.domain.CourseSchedule;
+import com.baeldung.optaplanner.domain.CourseScheduleSolution;
 import com.baeldung.optaplanner.domain.Lecture;
 
-public class ScoreCalculator implements EasyScoreCalculator<CourseSchedule> {
+public class ScoreCalculator implements EasyScoreCalculator<CourseScheduleSolution> {
 
 	@Override
-	public Score<HardSoftScore> calculateScore(CourseSchedule courseSchedule) {
+	public Score<HardSoftScore> calculateScore(CourseScheduleSolution courseSchedule) {
 		int hardScore = 0;
 		int softScore = 0;
 
