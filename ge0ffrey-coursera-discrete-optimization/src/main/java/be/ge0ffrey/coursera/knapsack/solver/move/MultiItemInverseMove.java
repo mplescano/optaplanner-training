@@ -21,10 +21,12 @@ import java.util.Collection;
 import java.util.Set;
 
 import be.ge0ffrey.coursera.knapsack.domain.Item;
+
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.core.impl.heuristic.move.Move;
 import org.optaplanner.core.impl.score.director.ScoreDirector;
 
-public class MultiItemInverseMove implements Move {
+public class MultiItemInverseMove implements Move<Solution> {
 
     private final Set<Item> itemSet;
 
@@ -37,18 +39,18 @@ public class MultiItemInverseMove implements Move {
         return true;
     }
 
-    @Override
-    public Move createUndoMove(ScoreDirector scoreDirector) {
+    private Move<Solution> createUndoMove(ScoreDirector scoreDirector) {
         return new MultiItemInverseMove(itemSet);
     }
 
     @Override
-    public void doMove(ScoreDirector scoreDirector) {
+    public Move<Solution> doMove(ScoreDirector scoreDirector) {
         for (Item item : itemSet) {
             scoreDirector.beforeVariableChanged(item, "inside");
             item.setInside(!item.getInside().booleanValue());
             scoreDirector.afterVariableChanged(item, "inside");
         }
+        return this.createUndoMove(scoreDirector);
     }
 
     @Override

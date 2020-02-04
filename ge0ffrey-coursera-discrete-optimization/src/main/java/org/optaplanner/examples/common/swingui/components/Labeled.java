@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2015 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.swingui;
+package org.optaplanner.examples.common.swingui.components;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+/**
+ * @see LabeledComboBoxRenderer
+ */
+public interface Labeled {
 
-import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.examples.common.swingui.SolutionPanel;
+    String getLabel();
 
-public class ColoringPanel extends SolutionPanel<Solution> {
-
-    public ColoringPanel() {
-    }
-
-    @Override
-    public void resetPanel(Solution solution) {
-        ColoringSolution coloringSolution = (ColoringSolution) solution;
-    }
-
-	
 }

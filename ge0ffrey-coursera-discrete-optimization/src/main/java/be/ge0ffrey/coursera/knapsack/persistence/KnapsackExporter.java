@@ -20,7 +20,8 @@ import java.io.IOException;
 
 import be.ge0ffrey.coursera.knapsack.domain.Item;
 import be.ge0ffrey.coursera.knapsack.domain.Knapsack;
-import org.optaplanner.core.impl.solution.Solution;
+
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
 
 public class KnapsackExporter extends AbstractTxtSolutionExporter {

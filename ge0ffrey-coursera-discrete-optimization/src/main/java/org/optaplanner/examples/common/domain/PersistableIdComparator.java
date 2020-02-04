@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2010 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.swingui;
+package org.optaplanner.examples.common.domain;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+import java.io.Serializable;
+import java.util.Comparator;
 
-import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.examples.common.swingui.SolutionPanel;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 
-public class ColoringPanel extends SolutionPanel<Solution> {
-
-    public ColoringPanel() {
-    }
+public class PersistableIdComparator implements Comparator<AbstractPersistable>, Serializable {
 
     @Override
-    public void resetPanel(Solution solution) {
-        ColoringSolution coloringSolution = (ColoringSolution) solution;
+    public int compare(AbstractPersistable a, AbstractPersistable b) {
+        return new CompareToBuilder().append(a.getId(), b.getId()).toComparison();
     }
 
-	
 }

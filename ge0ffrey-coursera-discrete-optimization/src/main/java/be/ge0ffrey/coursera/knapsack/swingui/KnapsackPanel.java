@@ -17,10 +17,11 @@
 package be.ge0ffrey.coursera.knapsack.swingui;
 
 import be.ge0ffrey.coursera.knapsack.domain.Knapsack;
-import org.optaplanner.core.impl.solution.Solution;
+
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 
-public class KnapsackPanel extends SolutionPanel {
+public class KnapsackPanel extends SolutionPanel<Solution> {
 
     public KnapsackPanel() {
     }

@@ -41,7 +41,7 @@ public class FacultyPlacerApp extends CommonApp {
     public FacultyPlacerApp() {
         super("Faculty placer",
                 "TODO",
-                null);
+                null, null);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class FacultyPlacerApp extends CommonApp {
     }
 
     @Override
-    protected AbstractSolutionImporter createSolutionImporter() {
-        return new FacultyPlacerImporter();
+    protected AbstractSolutionImporter[] createSolutionImporters() {
+        return new AbstractSolutionImporter[] {new FacultyPlacerImporter()};
     }
 
     @Override

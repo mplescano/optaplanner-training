@@ -43,7 +43,7 @@ public class CourseraTspApp extends CommonApp {
                 "Official competition name: TSP - Traveling salesman problem\n\n" +
                         "Determine the order in which to visit all cities.\n\n" +
                         "Find the *shortest route to visit all cities.",
-                TspPanel.LOGO_PATH);
+                TspPanel.LOGO_PATH, null);
     }
 
     @Override

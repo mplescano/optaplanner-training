@@ -26,10 +26,11 @@ import be.ge0ffrey.coursera.coloring.domain.Color;
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Edge;
 import be.ge0ffrey.coursera.coloring.domain.Node;
-import org.optaplanner.core.impl.solution.Solution;
+
+import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 
-public class ColoringImporter extends AbstractTxtSolutionImporter {
+public class ColoringImporter extends AbstractTxtSolutionImporter<Solution> {
 
     private static final String INPUT_FILE_SUFFIX = "txt";
 

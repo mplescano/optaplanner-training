@@ -23,13 +23,15 @@ import java.util.List;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
+import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
+import org.optaplanner.core.api.domain.solution.Solution;
+import org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScore;
-import org.optaplanner.core.impl.score.buildin.hardmediumsoftlong.HardMediumSoftLongScoreDefinition;
-import org.optaplanner.core.impl.solution.Solution;
+
 import org.optaplanner.examples.common.domain.AbstractPersistable;
-import org.optaplanner.persistence.xstream.XStreamScoreConverter;
+import org.optaplanner.persistence.xstream.api.score.buildin.hardmediumsoft.HardMediumSoftScoreXStreamConverter;
 
 @PlanningSolution
 @XStreamAlias("ColoringSolution")
@@ -40,7 +42,7 @@ public class ColoringSolution extends AbstractPersistable implements Solution<Ha
     private List<Node> nodeList;
     private List<Edge> edgeList;
 
-    @XStreamConverter(value = XStreamScoreConverter.class, types = {HardMediumSoftLongScoreDefinition.class})
+    @XStreamConverter(HardMediumSoftScoreXStreamConverter.class)
     private HardMediumSoftLongScore score;
 
     @ValueRangeProvider(id = "colorRange")
@@ -69,6 +71,7 @@ public class ColoringSolution extends AbstractPersistable implements Solution<Ha
         this.edgeList = edgeList;
     }
 
+    @PlanningScore
     public HardMediumSoftLongScore getScore() {
         return score;
     }
@@ -81,6 +84,7 @@ public class ColoringSolution extends AbstractPersistable implements Solution<Ha
     // Complex methods
     // ************************************************************************
 
+    @ProblemFactCollectionProperty
     public Collection<? extends Object> getProblemFacts() {
         List<Object> facts = new ArrayList<Object>();
         facts.addAll(colorList);

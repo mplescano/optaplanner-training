@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2014 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.swingui;
+package org.optaplanner.examples.common.swingui;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+import javax.swing.ImageIcon;
 
-import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.examples.common.swingui.SolutionPanel;
+public class CommonIcons {
 
-public class ColoringPanel extends SolutionPanel<Solution> {
+    public final static ImageIcon LOCKED_ICON = new ImageIcon(CommonIcons.class.getResource("locked.png"));
 
-    public ColoringPanel() {
-    }
+    private CommonIcons() {}
 
-    @Override
-    public void resetPanel(Solution solution) {
-        ColoringSolution coloringSolution = (ColoringSolution) solution;
-    }
-
-	
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2010 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.swingui;
+package org.optaplanner.examples.common.app;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.examples.common.swingui.SolutionPanel;
+public class LoggingMain {
 
-public class ColoringPanel extends SolutionPanel<Solution> {
+    protected final transient Logger logger = LoggerFactory.getLogger(getClass());
 
-    public ColoringPanel() {
-    }
-
-    @Override
-    public void resetPanel(Solution solution) {
-        ColoringSolution coloringSolution = (ColoringSolution) solution;
-    }
-
-	
 }

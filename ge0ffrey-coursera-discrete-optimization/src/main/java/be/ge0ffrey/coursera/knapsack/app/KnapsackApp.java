@@ -41,7 +41,7 @@ public class KnapsackApp extends CommonApp {
     public KnapsackApp() {
         super("Knapsack",
                 "TODO",
-                null);
+                null, null);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class KnapsackApp extends CommonApp {
     }
 
     @Override
-    protected AbstractSolutionImporter createSolutionImporter() {
-        return new KnapsackImporter();
+    protected AbstractSolutionImporter[] createSolutionImporters() {
+        return new AbstractSolutionImporter[] {new KnapsackImporter()};
     }
 
     @Override

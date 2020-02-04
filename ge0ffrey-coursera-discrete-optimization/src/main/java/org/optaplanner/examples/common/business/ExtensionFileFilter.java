@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2013 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.swingui;
+package org.optaplanner.examples.common.business;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+import java.io.File;
+import java.io.FileFilter;
 
-import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.examples.common.swingui.SolutionPanel;
+public class ExtensionFileFilter implements FileFilter {
 
-public class ColoringPanel extends SolutionPanel<Solution> {
+    private final String extensionWithDot;
 
-    public ColoringPanel() {
+    public ExtensionFileFilter(String extension) {
+        extensionWithDot = "." + extension;
     }
 
     @Override
-    public void resetPanel(Solution solution) {
-        ColoringSolution coloringSolution = (ColoringSolution) solution;
+    public boolean accept(File file) {
+        if (file.isDirectory() || file.isHidden()) {
+            return false;
+        }
+        return file.getName().endsWith(extensionWithDot);
     }
 
-	
 }

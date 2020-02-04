@@ -41,7 +41,7 @@ public class ColoringApp extends CommonApp {
     public ColoringApp() {
         super("Coloring",
                 "TODO",
-                null);
+                null, null);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class ColoringApp extends CommonApp {
     }
 
     @Override
-    protected AbstractSolutionImporter createSolutionImporter() {
-        return new ColoringImporter();
+    protected AbstractSolutionImporter[] createSolutionImporters() {
+        return new AbstractSolutionImporter[]{new ColoringImporter()};
     }
 
     @Override

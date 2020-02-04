@@ -18,8 +18,9 @@ package be.ge0ffrey.coursera.coloring.persistence;
 
 import java.io.File;
 
-import org.optaplanner.core.impl.solution.ProblemIO;
-import org.optaplanner.core.impl.solution.Solution;
+import org.optaplanner.core.api.domain.solution.Solution;
+
+import be.ge0ffrey.coursera.ProblemIO;
 
 public class ColoringProblemIO implements ProblemIO {
 
