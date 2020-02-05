@@ -22,9 +22,13 @@ import org.optaplanner.core.api.score.buildin.simple.SimpleScore;
 import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 import org.optaplanner.examples.nqueens.domain.NQueens;
 import org.optaplanner.examples.nqueens.domain.Queen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class NQueensEasyScoreCalculator implements EasyScoreCalculator<NQueens> {
 
+	Logger logger = LoggerFactory.getLogger(NQueensEasyScoreCalculator.class);
+	
     @Override
     public SimpleScore calculateScore(NQueens nQueens) {
         int n = nQueens.getN();
@@ -48,6 +52,7 @@ public class NQueensEasyScoreCalculator implements EasyScoreCalculator<NQueens> 
                 }
             }
         }
+        logger.debug("score {}", score);
         return SimpleScore.of(score);
     }
 

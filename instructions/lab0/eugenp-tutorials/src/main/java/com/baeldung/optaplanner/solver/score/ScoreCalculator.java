@@ -6,12 +6,16 @@ import java.util.Set;
 import org.optaplanner.core.api.score.Score;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.baeldung.optaplanner.domain.CourseScheduleSolution;
 import com.baeldung.optaplanner.domain.Lecture;
 
 public class ScoreCalculator implements EasyScoreCalculator<CourseScheduleSolution> {
 
+	Logger logger = LoggerFactory.getLogger(ScoreCalculator.class);
+	
 	@Override
 	public Score<HardSoftScore> calculateScore(CourseScheduleSolution courseSchedule) {
 		int hardScore = 0;
@@ -28,7 +32,7 @@ public class ScoreCalculator implements EasyScoreCalculator<CourseScheduleSoluti
 				}
 			}
 		}
-
+		logger.debug("hardScore {} softScore {}", hardScore, softScore);
 		return HardSoftScore.of(hardScore, softScore);
 	}
 }

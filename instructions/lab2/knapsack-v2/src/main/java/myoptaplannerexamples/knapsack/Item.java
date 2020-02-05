@@ -5,12 +5,9 @@ import javax.validation.constraints.NotNull;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
-import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @PlanningEntity
 public class Item implements Serializable {
