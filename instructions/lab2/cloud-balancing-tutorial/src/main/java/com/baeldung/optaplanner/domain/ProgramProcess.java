@@ -1,7 +1,11 @@
 package com.baeldung.optaplanner.domain;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
+import org.optaplanner.core.api.domain.lookup.PlanningId;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
+
+import com.baeldung.optaplanner.solver.CloudComputerStrengthComparator;
+import com.baeldung.optaplanner.solver.CloudProcessDifficultyComparator;
 
 /**
  * This class is particularly important. It is the class that is modified during
@@ -10,8 +14,10 @@ import org.optaplanner.core.api.domain.variable.PlanningVariable;
  * @author mplescano
  *
  */
-@PlanningEntity
+@PlanningEntity(difficultyComparatorClass = CloudProcessDifficultyComparator.class)
 public class ProgramProcess {
+
+	protected Long id;
 
 	private int requiredCpu;
 
@@ -45,7 +51,7 @@ public class ProgramProcess {
 		this.requiredNetworkBandwidth = requiredNetworkBandwidth;
 	}
 
-	@PlanningVariable(valueRangeProviderRefs = "computerRange")
+	@PlanningVariable(valueRangeProviderRefs = "computerRange", strengthComparatorClass = CloudComputerStrengthComparator.class)
 	public CloudComputer getComputer() {
 		return computer;
 	}
@@ -54,4 +60,16 @@ public class ProgramProcess {
 		this.computer = computer;
 	}
 
+	@PlanningId
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getRequiredMultiplicand() {
+		return requiredCpu * requiredMemory * requiredNetworkBandwidth;
+	}
 }

@@ -1,7 +1,11 @@
 package com.baeldung.optaplanner.domain;
 
+import org.optaplanner.core.api.domain.lookup.PlanningId;
+
 public class CloudComputer {
 
+	private Long id;
+	
 	private int cpu;
 
 	private int memory;
@@ -41,5 +45,17 @@ public class CloudComputer {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
+	
+	@PlanningId
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getMultiplicand() {
+		return cpu * memory * networkBandwidth;
+	}
 }
