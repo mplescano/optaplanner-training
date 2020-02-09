@@ -19,9 +19,9 @@ package org.optaplanner.examples.cloudbalancing.solver;
 
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
 
-import org.optaplanner.examples.cloudbalancing.domain.CloudBalance;
-import org.optaplanner.examples.cloudbalancing.domain.CloudComputer;
-import org.optaplanner.examples.cloudbalancing.domain.CloudProcess;
+import com.baeldung.optaplanner.domain.CloudBalanceSolution;
+import com.baeldung.optaplanner.domain.CloudComputer;
+import com.baeldung.optaplanner.domain.ProgramProcess;
 
 global HardSoftScoreHolder scoreHolder;
 
@@ -31,11 +31,11 @@ global HardSoftScoreHolder scoreHolder;
 
 rule "requiredCpuPowerTotal"
     when
-        $computer : CloudComputer($cpuPower : cpuPower)
+        $computer : CloudComputer($cpuPower : cpu)
         accumulate(
-            CloudProcess(
+            ProgramProcess(
                 computer == $computer,
-                $requiredCpuPower : requiredCpuPower);
+                $requiredCpuPower : requiredCpu);
             $requiredCpuPowerTotal : sum($requiredCpuPower);
             $requiredCpuPowerTotal > $cpuPower
         )
@@ -47,7 +47,7 @@ rule "requiredMemoryTotal"
     when
         $computer : CloudComputer($memory : memory)
         accumulate(
-            CloudProcess(
+            ProgramProcess(
                 computer == $computer,
                 $requiredMemory : requiredMemory);
             $requiredMemoryTotal : sum($requiredMemory);
@@ -61,7 +61,7 @@ rule "requiredNetworkBandwidthTotal"
     when
         $computer : CloudComputer($networkBandwidth : networkBandwidth)
         accumulate(
-            CloudProcess(
+            ProgramProcess(
                 computer == $computer,
                 $requiredNetworkBandwidth : requiredNetworkBandwidth);
             $requiredNetworkBandwidthTotal : sum($requiredNetworkBandwidth);
@@ -78,7 +78,7 @@ end
 rule "computerCost"
     when
         $computer : CloudComputer($cost : cost)
-        exists CloudProcess(computer == $computer)
+        exists ProgramProcess(computer == $computer)
     then
         scoreHolder.addSoftConstraintMatch(kcontext, - $cost);
 end

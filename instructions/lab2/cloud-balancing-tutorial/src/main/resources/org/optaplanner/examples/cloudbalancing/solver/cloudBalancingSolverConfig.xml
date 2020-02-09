@@ -10,8 +10,8 @@
 
   <!-- Score configuration -->
   <scoreDirectorFactory>
-    <easyScoreCalculatorClass>com.baeldung.optaplanner.solver.score.CloudBalancingEasyScoreCalculator</easyScoreCalculatorClass>
-    <!-- <scoreDrl>org/optaplanner/examples/cloudbalancing/solver/cloudBalancingScoreRules.drl</scoreDrl>-->
+    <!-- <easyScoreCalculatorClass>com.baeldung.optaplanner.solver.score.CloudBalancingEasyScoreCalculator</easyScoreCalculatorClass> -->
+    <scoreDrl>org/optaplanner/examples/cloudbalancing/solver/cloudBalancingScoreRules.drl</scoreDrl>
     <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
   </scoreDirectorFactory>
 
@@ -21,9 +21,9 @@
   </termination>
 
   <!-- Power tweaked optimization algorithms configuration -->
-  <!--<constructionHeuristic>-->
-    <!--<constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>-->
-  <!--</constructionHeuristic>-->
+  <constructionHeuristic>
+    <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+  </constructionHeuristic>
   <localSearch>
     <!--<unionMoveSelector>-->
       <!--<changeMoveSelector/>-->

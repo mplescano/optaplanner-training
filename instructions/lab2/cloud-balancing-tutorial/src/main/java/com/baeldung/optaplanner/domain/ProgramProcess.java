@@ -1,5 +1,6 @@
 package com.baeldung.optaplanner.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
@@ -72,4 +73,10 @@ public class ProgramProcess {
 	public int getRequiredMultiplicand() {
 		return requiredCpu * requiredMemory * requiredNetworkBandwidth;
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", this.id).append("computer", this.computer).build();
+	}
+
 }

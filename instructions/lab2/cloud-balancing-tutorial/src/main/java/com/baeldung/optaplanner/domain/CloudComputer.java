@@ -1,5 +1,6 @@
 package com.baeldung.optaplanner.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
 
 public class CloudComputer {
@@ -58,4 +59,11 @@ public class CloudComputer {
 	public int getMultiplicand() {
 		return cpu * memory * networkBandwidth;
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", this.id).build();
+	}
+	
+	
 }

@@ -2,6 +2,7 @@ package com.baeldung.optaplanner.domain;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
@@ -60,6 +61,14 @@ public class CloudBalanceSolution {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("computerList", this.computerList)
+				.append("processList", this.processList).build();
+	}
+	
+	
 
 	
 }
