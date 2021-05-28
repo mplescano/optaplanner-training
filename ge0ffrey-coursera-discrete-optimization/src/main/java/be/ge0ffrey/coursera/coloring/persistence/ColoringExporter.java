@@ -18,7 +18,6 @@ package be.ge0ffrey.coursera.coloring.persistence;
 
 import java.io.IOException;
 
-import be.ge0ffrey.coursera.coloring.app.ColoringApp;
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 
@@ -28,7 +27,11 @@ import org.optaplanner.examples.common.persistence.SolutionConverter;
 
 public class ColoringExporter extends AbstractTxtSolutionExporter<ColoringSolution> {
 
-    private static final String OUTPUT_FILE_SUFFIX = "txt";
+    public ColoringExporter() {
+		
+	}
+
+	private static final String OUTPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
         SolutionConverter<ColoringSolution> converter = SolutionConverter.createExportConverter(

@@ -17,7 +17,6 @@
 package be.ge0ffrey.coursera.knapsack.app;
 
 import org.optaplanner.examples.common.app.CommonBenchmarkApp;
-import org.optaplanner.examples.tsp.app.TspBenchmarkApp;
 
 public class KnapsackBenchmarkApp extends CommonBenchmarkApp {
 

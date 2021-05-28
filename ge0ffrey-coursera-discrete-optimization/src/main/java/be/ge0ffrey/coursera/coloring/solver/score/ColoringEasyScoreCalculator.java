@@ -17,7 +17,6 @@
 package be.ge0ffrey.coursera.coloring.solver.score;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import be.ge0ffrey.coursera.coloring.domain.Color;
@@ -25,10 +24,9 @@ import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Edge;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScore;
-import org.optaplanner.core.api.score.buildin.hardsoftlong.HardSoftLongScore;
-import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
+import org.optaplanner.core.api.score.calculator.EasyScoreCalculator;
 
-public class ColoringEasyScoreCalculator implements EasyScoreCalculator<ColoringSolution> {
+public class ColoringEasyScoreCalculator implements EasyScoreCalculator<ColoringSolution, HardMediumSoftLongScore> {
 
     public HardMediumSoftLongScore calculateScore(ColoringSolution coloringSolution) {
         long hardScore = 0L;
@@ -52,7 +50,7 @@ public class ColoringEasyScoreCalculator implements EasyScoreCalculator<Coloring
         for (Integer colorCount : colorCountMap.values()) {
             softScore += (long) colorCount * (long) colorCount;
         }
-        return HardMediumSoftLongScore.valueOf(hardScore, mediumScore, softScore);
+        return HardMediumSoftLongScore.of(hardScore, mediumScore, softScore);
     }
 
 }

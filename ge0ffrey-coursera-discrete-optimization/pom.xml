@@ -49,6 +49,10 @@
 	</build>
 
 	<dependencies>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-decisiontables</artifactId>
+    </dependency>
 		<!-- Internal dependencies -->
 		<dependency>
 			<groupId>org.optaplanner</groupId>

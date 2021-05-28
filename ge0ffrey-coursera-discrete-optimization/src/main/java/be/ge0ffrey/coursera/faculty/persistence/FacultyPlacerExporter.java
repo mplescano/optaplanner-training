@@ -18,22 +18,30 @@ package be.ge0ffrey.coursera.faculty.persistence;
 
 import java.io.IOException;
 
+import be.ge0ffrey.coursera.faculty.app.FacultyPlacerApp;
 import be.ge0ffrey.coursera.faculty.domain.Customer;
 import be.ge0ffrey.coursera.faculty.domain.FacultyPlacerSolution;
 
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
+import org.optaplanner.examples.common.persistence.SolutionConverter;
+import org.optaplanner.examples.curriculumcourse.app.CurriculumCourseApp;
+import org.optaplanner.examples.curriculumcourse.domain.CourseSchedule;
+import org.optaplanner.examples.curriculumcourse.persistence.CurriculumCourseExporter;
 
 public class FacultyPlacerExporter extends AbstractTxtSolutionExporter<Solution> {
 
     private static final String OUTPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
-        new FacultyPlacerExporter().convertAll();
+        // new FacultyPlacerExporter().convertAll();
+        SolutionConverter<CourseSchedule> converter = SolutionConverter.createExportConverter(
+        		FacultyPlacerApp.DATA_DIR_NAME, Solution.class, new FacultyPlacerExporter());
+        converter.convertAll();
     }
 
     public FacultyPlacerExporter() {
-        super(new FacultyPlacerDao());
+        //super(new FacultyPlacerDao());
     }
 
     @Override

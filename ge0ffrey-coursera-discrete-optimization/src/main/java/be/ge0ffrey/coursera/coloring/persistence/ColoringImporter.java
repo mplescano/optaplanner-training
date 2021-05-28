@@ -20,22 +20,25 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import be.ge0ffrey.coursera.coloring.domain.Color;
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Edge;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 
-import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 
-public class ColoringImporter extends AbstractTxtSolutionImporter<Solution> {
+public class ColoringImporter extends AbstractTxtSolutionImporter<ColoringSolution> {
 
-    private static final String INPUT_FILE_SUFFIX = "txt";
+    public ColoringImporter() {
+		
+	}
+
+	private static final String INPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
-        new ColoringImporter().convertAll();
+    	// TODO
+        // new ColoringImporter().convertAll();
     }
 
     @Override
@@ -47,14 +50,14 @@ public class ColoringImporter extends AbstractTxtSolutionImporter<Solution> {
         return new ColoringInputBuilder();
     }
 
-    public static class ColoringInputBuilder extends TxtInputBuilder {
+    public static class ColoringInputBuilder extends TxtInputBuilder<ColoringSolution> {
 
         private ColoringSolution solution;
 
         private int nodeListSize;
         private int edgeListSize;
 
-        public Solution readSolution() throws IOException {
+        public ColoringSolution readSolution() throws IOException {
             solution = new ColoringSolution();
             solution.setId(0L);
             readHeaders();

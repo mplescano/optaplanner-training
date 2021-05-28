@@ -27,6 +27,7 @@ import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
 import org.optaplanner.examples.common.persistence.SolutionDao;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
+import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
 
 public class KnapsackApp extends CommonApp {
 
@@ -41,10 +42,9 @@ public class KnapsackApp extends CommonApp {
     public KnapsackApp() {
         super("Knapsack",
                 "TODO",
-                null, null);
+                null, null, null);
     }
 
-    @Override
     protected Solver createSolver() {
         SolverFactory solverFactory = SolverFactory.createFromXmlResource(SOLVER_CONFIG);
         return solverFactory.buildSolver();
@@ -55,7 +55,6 @@ public class KnapsackApp extends CommonApp {
         return new KnapsackPanel();
     }
 
-    @Override
     protected SolutionDao createSolutionDao() {
         return new KnapsackDao();
     }
@@ -69,5 +68,11 @@ public class KnapsackApp extends CommonApp {
     protected AbstractSolutionExporter createSolutionExporter() {
         return new KnapsackExporter();
     }
+
+	@Override
+	public SolutionFileIO createSolutionFileIO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

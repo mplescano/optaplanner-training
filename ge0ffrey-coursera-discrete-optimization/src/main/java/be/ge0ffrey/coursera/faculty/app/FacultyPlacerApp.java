@@ -25,8 +25,8 @@ import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.examples.common.app.CommonApp;
 import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
-import org.optaplanner.examples.common.persistence.SolutionDao;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
+import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
 
 public class FacultyPlacerApp extends CommonApp {
 
@@ -41,10 +41,9 @@ public class FacultyPlacerApp extends CommonApp {
     public FacultyPlacerApp() {
         super("Faculty placer",
                 "TODO",
-                null, null);
+                null, null, null);
     }
 
-    @Override
     protected Solver createSolver() {
         SolverFactory solverFactory = SolverFactory.createFromXmlResource(SOLVER_CONFIG);
         return solverFactory.buildSolver();
@@ -56,11 +55,6 @@ public class FacultyPlacerApp extends CommonApp {
     }
 
     @Override
-    protected SolutionDao createSolutionDao() {
-        return new FacultyPlacerDao();
-    }
-
-    @Override
     protected AbstractSolutionImporter[] createSolutionImporters() {
         return new AbstractSolutionImporter[] {new FacultyPlacerImporter()};
     }
@@ -69,5 +63,11 @@ public class FacultyPlacerApp extends CommonApp {
     protected AbstractSolutionExporter createSolutionExporter() {
         return new FacultyPlacerExporter();
     }
+
+	@Override
+	public SolutionFileIO createSolutionFileIO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

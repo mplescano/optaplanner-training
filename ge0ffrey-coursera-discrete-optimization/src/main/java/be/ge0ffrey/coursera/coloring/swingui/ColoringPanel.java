@@ -18,18 +18,16 @@ package be.ge0ffrey.coursera.coloring.swingui;
 
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 
-import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 
-public class ColoringPanel extends SolutionPanel<Solution> {
+public class ColoringPanel extends SolutionPanel<ColoringSolution> {
 
     public ColoringPanel() {
     }
 
     @Override
-    public void resetPanel(Solution solution) {
+    public void resetPanel(ColoringSolution solution) {
         ColoringSolution coloringSolution = (ColoringSolution) solution;
     }
 
-	
 }

@@ -16,6 +16,7 @@
 
 package be.ge0ffrey.coursera.coloring.app;
 
+import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringDao;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringExporter;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringImporter;
@@ -24,11 +25,11 @@ import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.examples.common.app.CommonApp;
 import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
-
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
+import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
 
-public class ColoringApp extends CommonApp {
+public class ColoringApp extends CommonApp<ColoringSolution> {
 
     public static final String SOLVER_CONFIG
             = "be/ge0ffrey/coursera/coloring/solver/coloringSolverConfig.xml";
@@ -41,10 +42,9 @@ public class ColoringApp extends CommonApp {
     public ColoringApp() {
         super("Coloring",
                 "TODO",
-                null, null, null);
+                SOLVER_CONFIG, "coloring", null);
     }
 
-    @Override
     protected SolverFactory createSolverFactory() {
         return SolverFactory.createFromXmlResource(SOLVER_CONFIG);
     }
@@ -54,9 +54,8 @@ public class ColoringApp extends CommonApp {
         return new ColoringPanel();
     }
 
-    @Override
-    public SolutionFileIO createSolutionFileIO() {
-        return new ColoringDao();
+    public SolutionFileIO<ColoringSolution> createSolutionFileIO() {
+    	return new ColoringDao();
     }
 
     @Override

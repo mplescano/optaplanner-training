@@ -25,8 +25,7 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
-import org.optaplanner.core.api.domain.solution.Solution;
-import org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty;
+import org.optaplanner.core.api.domain.solution.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScore;
 
@@ -35,7 +34,7 @@ import org.optaplanner.persistence.xstream.api.score.buildin.hardmediumsoft.Hard
 
 @PlanningSolution
 @XStreamAlias("ColoringSolution")
-public class ColoringSolution extends AbstractPersistable implements Solution<HardMediumSoftLongScore> {
+public class ColoringSolution extends AbstractPersistable {
 
     private List<Color> colorList;
 

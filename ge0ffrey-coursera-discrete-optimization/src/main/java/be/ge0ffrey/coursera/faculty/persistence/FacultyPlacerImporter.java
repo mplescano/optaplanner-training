@@ -34,7 +34,7 @@ public class FacultyPlacerImporter extends AbstractTxtSolutionImporter<Solution>
     private static final String INPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
-        new FacultyPlacerImporter().convertAll();
+        // new FacultyPlacerImporter().convertAll();
     }
 
     public FacultyPlacerImporter() {

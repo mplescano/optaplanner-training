@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2010 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.persistence;
+package org.optaplanner.examples.common.app;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
+public class LoggingMain {
 
-public class ColoringDao extends XStreamSolutionFileIO<ColoringSolution> {
-
-    public ColoringDao() {
-        super(ColoringSolution.class);
-    }
+    protected final transient Logger logger = LoggerFactory.getLogger(getClass());
 
 }

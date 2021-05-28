@@ -18,27 +18,35 @@ package be.ge0ffrey.coursera.coloring.persistence;
 
 import java.io.File;
 
-import org.optaplanner.core.api.domain.solution.Solution;
+import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
 
-import be.ge0ffrey.coursera.ProblemIO;
+import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 
-public class ColoringProblemIO implements ProblemIO {
+public class ColoringProblemIO implements SolutionFileIO<ColoringSolution> {
 
     public static final String FILE_EXTENSION = "txt";
 
     private ColoringImporter importer = new ColoringImporter();
     private ColoringExporter exporter = new ColoringExporter();
 
-    public String getFileExtension() {
-        return FILE_EXTENSION;
+    @Override
+    public String getInputFileExtension() {
+        return null;
     }
 
-    public Solution read(File inputSolutionFile) {
+    @Override
+    public String getOutputFileExtension() {
+    	return FILE_EXTENSION;
+    }
+
+    @Override
+    public ColoringSolution read(File inputSolutionFile) {
         return importer.readSolution(inputSolutionFile);
     }
 
-    public void write(Solution solution, File outputSolutionFile) {
-        exporter.writeSolution(solution, outputSolutionFile);
+    @Override
+    public void write(ColoringSolution solution, File outputSolutionFile) {
+        exporter.writeSolution((ColoringSolution) solution, outputSolutionFile);
     }
 
 }

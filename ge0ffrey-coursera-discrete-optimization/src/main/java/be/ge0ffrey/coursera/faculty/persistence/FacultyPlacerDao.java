@@ -17,10 +17,9 @@
 package be.ge0ffrey.coursera.faculty.persistence;
 
 import be.ge0ffrey.coursera.faculty.domain.FacultyPlacerSolution;
-import org.optaplanner.examples.cloudbalancing.domain.CloudBalance;
 import org.optaplanner.examples.common.persistence.XStreamSolutionDao;
 
-public class FacultyPlacerDao extends XStreamSolutionDao {
+public class FacultyPlacerDao extends XStreamSolutionDao<FacultyPlacerSolution> {
 
     public FacultyPlacerDao() {
         super("faculty", FacultyPlacerSolution.class);

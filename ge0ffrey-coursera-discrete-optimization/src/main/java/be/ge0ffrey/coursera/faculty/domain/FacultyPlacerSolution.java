@@ -23,6 +23,7 @@ import java.util.List;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
+import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
@@ -33,7 +34,7 @@ import org.optaplanner.persistence.xstream.api.score.buildin.hardsoftlong.HardSo
 
 @PlanningSolution
 @XStreamAlias("FacultyPlacerSolution")
-public class FacultyPlacerSolution extends AbstractPersistable implements Solution<HardSoftLongScore> {
+public class FacultyPlacerSolution extends AbstractPersistable {
 
     private String name;
     private List<Location> locationList;
@@ -78,6 +79,7 @@ public class FacultyPlacerSolution extends AbstractPersistable implements Soluti
         this.customerList = customerList;
     }
 
+    @PlanningScore
     public HardSoftLongScore getScore() {
         return score;
     }

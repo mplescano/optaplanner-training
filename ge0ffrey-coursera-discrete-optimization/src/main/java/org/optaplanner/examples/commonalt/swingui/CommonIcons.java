@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 JBoss Inc
+ * Copyright 2014 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package be.ge0ffrey.coursera.coloring.persistence;
+package org.optaplanner.examples.common.swingui;
 
-import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
+import javax.swing.ImageIcon;
 
-import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
+public class CommonIcons {
 
-public class ColoringDao extends XStreamSolutionFileIO<ColoringSolution> {
+    public final static ImageIcon PINNED_ICON = new ImageIcon(CommonIcons.class.getResource("pinned.png"));
 
-    public ColoringDao() {
-        super(ColoringSolution.class);
-    }
+    private CommonIcons() {}
 
 }

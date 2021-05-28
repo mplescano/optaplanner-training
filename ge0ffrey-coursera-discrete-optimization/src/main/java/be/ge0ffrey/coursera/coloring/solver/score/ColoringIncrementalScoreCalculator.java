@@ -16,6 +16,7 @@
 
 package be.ge0ffrey.coursera.coloring.solver.score;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,98 +25,120 @@ import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Edge;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScore;
-import org.optaplanner.core.impl.score.director.incremental.AbstractIncrementalScoreCalculator;
+import org.optaplanner.core.api.score.calculator.ConstraintMatchAwareIncrementalScoreCalculator;
+import org.optaplanner.core.api.score.constraint.ConstraintMatchTotal;
+import org.optaplanner.core.api.score.constraint.Indictment;
 
-public class ColoringIncrementalScoreCalculator extends AbstractIncrementalScoreCalculator<ColoringSolution> {
+public class ColoringIncrementalScoreCalculator
+		implements ConstraintMatchAwareIncrementalScoreCalculator<ColoringSolution, HardMediumSoftLongScore> {
 
-    private Map<Color, Long> colorCountMap;
-    
-    private long hardScore;
-    private long mediumScore;
-    private long softScore;
+	private Map<Color, Long> colorCountMap;
 
-    public void resetWorkingSolution(ColoringSolution coloringSolution) {
-        int colorListSize = coloringSolution.getColorList().size();
-        colorCountMap = new HashMap<Color, Long>(colorListSize);
-        for (Color color : coloringSolution.getColorList()) {
-            colorCountMap.put(color, 0L);
-        }
-        hardScore = 0L;
-        mediumScore = 0L;
-        softScore = 0L;
-        for (Node node : coloringSolution.getNodeList()) {
-            insert(node);
-        }
-    }
+	private long hardScore;
+	private long mediumScore;
+	private long softScore;
 
-    public void beforeEntityAdded(Object entity) {
-        // Do nothing
-    }
+	public void resetWorkingSolution(ColoringSolution coloringSolution) {
+		int colorListSize = coloringSolution.getColorList().size();
+		colorCountMap = new HashMap<Color, Long>(colorListSize);
+		for (Color color : coloringSolution.getColorList()) {
+			colorCountMap.put(color, 0L);
+		}
+		hardScore = 0L;
+		mediumScore = 0L;
+		softScore = 0L;
+		for (Node node : coloringSolution.getNodeList()) {
+			insert(node);
+		}
+	}
 
-    public void afterEntityAdded(Object entity) {
-        // TODO the maps should probably be adjusted
-        insert((Node) entity);
-    }
+	public void beforeEntityAdded(Object entity) {
+		// Do nothing
+	}
 
-    public void beforeVariableChanged(Object entity, String variableName) {
-        retract((Node) entity);
-    }
+	public void afterEntityAdded(Object entity) {
+		// TODO the maps should probably be adjusted
+		insert((Node) entity);
+	}
 
-    public void afterVariableChanged(Object entity, String variableName) {
-        insert((Node) entity);
-    }
+	public void beforeVariableChanged(Object entity, String variableName) {
+		retract((Node) entity);
+	}
 
-    public void beforeEntityRemoved(Object entity) {
-        retract((Node) entity);
-    }
+	public void afterVariableChanged(Object entity, String variableName) {
+		insert((Node) entity);
+	}
 
-    public void afterEntityRemoved(Object entity) {
-        // Do nothing
-        // TODO the maps should probably be adjusted
-    }
+	public void beforeEntityRemoved(Object entity) {
+		retract((Node) entity);
+	}
 
-    private void insert(Node node) {
-        Color color = node.getColor();
-        if (color != null) {
-            for (Edge edge : node.getEdgeList()) {
-                Color otherColor = edge.getOtherNode(node).getColor();
-                if (otherColor == color) {
-                    hardScore--;
-                }
-            }
+	public void afterEntityRemoved(Object entity) {
+		// Do nothing
+		// TODO the maps should probably be adjusted
+	}
 
-            long oldColorCount = colorCountMap.get(color);
-            long newColorCount = oldColorCount + 1L;
-            if (oldColorCount == 0) {
-                mediumScore--;
-            }
-            softScore += (newColorCount * newColorCount) - (oldColorCount * oldColorCount);
-            colorCountMap.put(color, newColorCount);
-        }
-    }
+	private void insert(Node node) {
+		Color color = node.getColor();
+		if (color != null) {
+			for (Edge edge : node.getEdgeList()) {
+				Color otherColor = edge.getOtherNode(node).getColor();
+				if (otherColor == color) {
+					hardScore--;
+				}
+			}
 
-    private void retract(Node node) {
-        Color color = node.getColor();
-        if (color != null) {
-            for (Edge edge : node.getEdgeList()) {
-                Color otherColor = edge.getOtherNode(node).getColor();
-                if (otherColor == color) {
-                    hardScore++;
-                }
-            }
+			long oldColorCount = colorCountMap.get(color);
+			long newColorCount = oldColorCount + 1L;
+			if (oldColorCount == 0) {
+				mediumScore--;
+			}
+			softScore += (newColorCount * newColorCount) - (oldColorCount * oldColorCount);
+			colorCountMap.put(color, newColorCount);
+		}
+	}
 
-            long oldColorCount = colorCountMap.get(color);
-            long newColorCount = oldColorCount - 1L;
-            if (newColorCount == 0) {
-                mediumScore++;
-            }
-            softScore += (newColorCount * newColorCount) - (oldColorCount * oldColorCount);
-            colorCountMap.put(color, newColorCount);
-        }
-    }
+	private void retract(Node node) {
+		Color color = node.getColor();
+		if (color != null) {
+			for (Edge edge : node.getEdgeList()) {
+				Color otherColor = edge.getOtherNode(node).getColor();
+				if (otherColor == color) {
+					hardScore++;
+				}
+			}
 
-    public HardMediumSoftLongScore calculateScore() {
-        return HardMediumSoftLongScore.valueOf(hardScore, mediumScore, softScore);
-    }
+			long oldColorCount = colorCountMap.get(color);
+			long newColorCount = oldColorCount - 1L;
+			if (newColorCount == 0) {
+				mediumScore++;
+			}
+			softScore += (newColorCount * newColorCount) - (oldColorCount * oldColorCount);
+			colorCountMap.put(color, newColorCount);
+		}
+	}
+
+	@Override
+	public HardMediumSoftLongScore calculateScore() {
+		return HardMediumSoftLongScore.of(hardScore, mediumScore, softScore);
+	}
+
+	@Override
+	public void resetWorkingSolution(ColoringSolution workingSolution, boolean constraintMatchEnabled) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Collection<ConstraintMatchTotal> getConstraintMatchTotals() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<Object, Indictment> getIndictmentMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
