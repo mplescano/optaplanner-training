@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -27,8 +26,7 @@
   </properties>
 
   <repositories>
-    <!-- Included so the examples sources in the distribution zip build out-of-the-box 
-      with maven -->
+    <!-- Included so the examples sources in the distribution zip build out-of-the-box with maven -->
     <repository>
       <id>jboss-public-repository-group</id>
       <name>JBoss Public Repository Group</name>
@@ -61,16 +59,13 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <!-- WARNING: This configuration must be run with "mvn exec:java" 
-            not "mvn exec:exec". -->
-          <!-- It is impossible to write a configuration that is compatible 
-            with both exec:java and exec:exec -->
+          <!-- WARNING: This configuration must be run with "mvn exec:java" not "mvn exec:exec". -->
+          <!-- It is impossible to write a configuration that is compatible with both exec:java and exec:exec -->
           <configuration>
             <mainClass>org.optaplanner.examples.app.OptaPlannerExamplesApp</mainClass>
             <arguments>
               <argument>-Xms256m</argument>
-              <!-- Most examples run (potentially slower) with max heap of 
-                128 MB (so -Xmx128m), but 1 example's dataset requires 1.5 GB -->
+              <!-- Most examples run (potentially slower) with max heap of 128 MB (so -Xmx128m), but 1 example's dataset requires 1.5 GB -->
               <argument>-Xmx1536m</argument>
               <argument>-server</argument>
             </arguments>
@@ -186,8 +181,10 @@
     </dependency>
 
     <!-- Examples only dependencies. -->
-    <!-- WARNING: every examples only dependency must be properly dealt with 
-      in optaplanner-distribution/src/main/assembly/assembly-optaplanner.xml -->
+    <!--
+      WARNING: every examples only dependency must be properly dealt with in
+      optaplanner-distribution/src/main/assembly/assembly-optaplanner.xml
+    -->
     <!-- Converters -->
     <dependency>
       <groupId>org.jdom</groupId>
