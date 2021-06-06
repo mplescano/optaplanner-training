@@ -29,7 +29,6 @@ import be.ge0ffrey.coursera.coloring.domain.Node;
 
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
 import org.optaplanner.examples.common.persistence.SolutionJaxbConverter;
-import org.optaplanner.persistence.jaxb.impl.domain.solution.JaxbSolutionFileIO;
 
 public class ColoringImporter extends AbstractTxtSolutionImporter<ColoringSolution> {
 

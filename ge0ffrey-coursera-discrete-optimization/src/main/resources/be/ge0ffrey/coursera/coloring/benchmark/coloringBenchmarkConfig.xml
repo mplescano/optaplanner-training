@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<plannerBenchmark>
+<plannerBenchmark xmlns="https://www.optaplanner.org/xsd/benchmark" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.optaplanner.org/xsd/benchmark https://www.optaplanner.org/xsd/benchmark/benchmark.xsd">
   <benchmarkDirectory>local/data/coloring</benchmarkDirectory>
   <parallelBenchmarkCount>AUTO</parallelBenchmarkCount>
   <warmUpSecondsSpentLimit>30</warmUpSecondsSpentLimit>
 
   <inheritedSolverBenchmark>
-    <problemBenchmarks>
-      <problemIOClass>be.ge0ffrey.coursera.coloring.persistence.ColoringProblemIO</problemIOClass>
-      <inputSolutionFile>data/coloring/import/gc_50_3.txt</inputSolutionFile>
-      <inputSolutionFile>data/coloring/import/gc_70_7.txt</inputSolutionFile>
-      <inputSolutionFile>data/coloring/import/gc_100_5.txt</inputSolutionFile>
-      <inputSolutionFile>data/coloring/import/gc_250_9.txt</inputSolutionFile>
-      <inputSolutionFile>data/coloring/import/gc_500_1.txt</inputSolutionFile>
-      <inputSolutionFile>data/coloring/import/gc_1000_5.txt</inputSolutionFile>
-      <problemStatisticType>BEST_SCORE</problemStatisticType>
-      <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled>
-    </problemBenchmarks>
-
     <solver>
       <solutionClass>be.ge0ffrey.coursera.coloring.domain.ColoringSolution</solutionClass>
-      <planningEntityClass>be.ge0ffrey.coursera.coloring.domain.Node</planningEntityClass>
+      <entityClass>be.ge0ffrey.coursera.coloring.domain.Node</entityClass>
 
       <scoreDirectorFactory>
-        <scoreDefinitionType>HARD_MEDIUM_SOFT_LONG</scoreDefinitionType>
+        <!-- deprecated <scoreDefinitionType>HARD_MEDIUM_SOFT_LONG</scoreDefinitionType> -->
         <incrementalScoreCalculatorClass>be.ge0ffrey.coursera.coloring.solver.score.ColoringIncrementalScoreCalculator</incrementalScoreCalculatorClass>
         <initializingScoreTrend>ONLY_DOWN/ONLY_DOWN/ONLY_UP</initializingScoreTrend>
       </scoreDirectorFactory>
@@ -32,6 +20,21 @@
         <minutesSpentLimit>30</minutesSpentLimit>
       </termination>
     </solver>
+  
+    <problemBenchmarks>
+      <!-- deprecated <problemIOClass>be.ge0ffrey.coursera.coloring.persistence.ColoringProblemIO</problemIOClass> -->
+      <solutionFileIOClass>be.ge0ffrey.coursera.coloring.persistence.ColoringProblemIO</solutionFileIOClass>
+      <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled>
+      <inputSolutionFile>data/coloring/import/gc_50_3.txt</inputSolutionFile>
+      <inputSolutionFile>data/coloring/import/gc_70_7.txt</inputSolutionFile>
+      <inputSolutionFile>data/coloring/import/gc_100_5.txt</inputSolutionFile>
+      <inputSolutionFile>data/coloring/import/gc_250_9.txt</inputSolutionFile>
+      <inputSolutionFile>data/coloring/import/gc_500_1.txt</inputSolutionFile>
+      <inputSolutionFile>data/coloring/import/gc_1000_5.txt</inputSolutionFile>
+      <problemStatisticType>BEST_SCORE</problemStatisticType>
+    </problemBenchmarks>
+
+
   </inheritedSolverBenchmark>
 
   <solverBenchmark>

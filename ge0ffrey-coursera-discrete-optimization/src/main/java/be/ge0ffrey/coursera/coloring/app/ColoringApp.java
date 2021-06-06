@@ -17,7 +17,6 @@
 package be.ge0ffrey.coursera.coloring.app;
 
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
-import be.ge0ffrey.coursera.coloring.persistence.ColoringXStreamDao;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringExporter;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringImporter;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringJaxbXmlDao;

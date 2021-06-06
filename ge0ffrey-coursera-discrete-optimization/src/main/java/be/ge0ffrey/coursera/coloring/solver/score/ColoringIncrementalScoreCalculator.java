@@ -28,10 +28,14 @@ import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftL
 import org.optaplanner.core.api.score.calculator.ConstraintMatchAwareIncrementalScoreCalculator;
 import org.optaplanner.core.api.score.constraint.ConstraintMatchTotal;
 import org.optaplanner.core.api.score.constraint.Indictment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ColoringIncrementalScoreCalculator
 		implements ConstraintMatchAwareIncrementalScoreCalculator<ColoringSolution, HardMediumSoftLongScore> {
 
+    protected final transient Logger logger = LoggerFactory.getLogger(getClass());
+	
 	private Map<Color, Long> colorCountMap;
 
 	private long hardScore;
@@ -57,19 +61,22 @@ public class ColoringIncrementalScoreCalculator
 	}
 
 	public void afterEntityAdded(Object entity) {
-		// TODO the maps should probably be adjusted
+		logger.debug("afterEntityAdded {0}", entity);
 		insert((Node) entity);
 	}
 
 	public void beforeVariableChanged(Object entity, String variableName) {
+		logger.debug("beforeVariableChanged {0} {1}", entity, variableName);
 		retract((Node) entity);
 	}
 
 	public void afterVariableChanged(Object entity, String variableName) {
+		logger.debug("afterVariableChanged {0} {1}", entity, variableName);
 		insert((Node) entity);
 	}
 
 	public void beforeEntityRemoved(Object entity) {
+		logger.debug("beforeEntityRemoved {0}", entity);
 		retract((Node) entity);
 	}
 
@@ -125,8 +132,8 @@ public class ColoringIncrementalScoreCalculator
 
 	@Override
 	public void resetWorkingSolution(ColoringSolution workingSolution, boolean constraintMatchEnabled) {
-		// TODO Auto-generated method stub
-
+		logger.debug("resetWorkingSolution constraintMatchEnabled {0}", constraintMatchEnabled);
+		resetWorkingSolution(workingSolution);
 	}
 
 	@Override
