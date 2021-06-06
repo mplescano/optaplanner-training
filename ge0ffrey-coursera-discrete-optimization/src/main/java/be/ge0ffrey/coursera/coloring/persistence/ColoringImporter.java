@@ -21,12 +21,15 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.ge0ffrey.coursera.coloring.app.ColoringApp;
 import be.ge0ffrey.coursera.coloring.domain.Color;
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Edge;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionImporter;
+import org.optaplanner.examples.common.persistence.SolutionJaxbConverter;
+import org.optaplanner.persistence.jaxb.impl.domain.solution.JaxbSolutionFileIO;
 
 public class ColoringImporter extends AbstractTxtSolutionImporter<ColoringSolution> {
 
@@ -37,8 +40,9 @@ public class ColoringImporter extends AbstractTxtSolutionImporter<ColoringSoluti
 	private static final String INPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
-    	// TODO
-        // new ColoringImporter().convertAll();
+        SolutionJaxbConverter<ColoringSolution> converter = SolutionJaxbConverter.createImportConverter(
+                ColoringApp.DATA_DIR_NAME, new ColoringImporter(), ColoringSolution.class);;
+        converter.convertAll();
     }
 
     @Override

@@ -18,12 +18,13 @@ package be.ge0ffrey.coursera.coloring.persistence;
 
 import java.io.IOException;
 
+import be.ge0ffrey.coursera.coloring.app.ColoringApp;
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.examples.common.persistence.AbstractTxtSolutionExporter;
-import org.optaplanner.examples.common.persistence.SolutionConverter;
+import org.optaplanner.examples.common.persistence.SolutionJaxbConverter;
 
 public class ColoringExporter extends AbstractTxtSolutionExporter<ColoringSolution> {
 
@@ -34,8 +35,8 @@ public class ColoringExporter extends AbstractTxtSolutionExporter<ColoringSoluti
 	private static final String OUTPUT_FILE_SUFFIX = "txt";
 
     public static void main(String[] args) {
-        SolutionConverter<ColoringSolution> converter = SolutionConverter.createExportConverter(
-            "DATA_DIR_NAME", ColoringSolution.class, new ColoringExporter());
+        SolutionJaxbConverter<ColoringSolution> converter = SolutionJaxbConverter.createExportConverter(
+        		ColoringApp.DATA_DIR_NAME, ColoringSolution.class, new ColoringExporter());
         converter.convertAll();
     }
 
@@ -48,11 +49,12 @@ public class ColoringExporter extends AbstractTxtSolutionExporter<ColoringSoluti
         return new ColoringOutputBuilder();
     }
 
-    public static class ColoringOutputBuilder extends TxtOutputBuilder {
+    public static class ColoringOutputBuilder extends TxtOutputBuilder<ColoringSolution> {
 
         private ColoringSolution solution;
 
-        public void setSolution(Solution solution) {
+        public void setSolution(ColoringSolution solution) {
+        	super.setSolution(solution);
             this.solution = (ColoringSolution) solution;
         }
 

@@ -16,23 +16,32 @@
 
 package be.ge0ffrey.coursera.coloring.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlIDREF;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
-import org.optaplanner.examples.common.domain.AbstractPersistable;
+import org.optaplanner.examples.common.domain.AbstractJaxbPersistable;
 
 @PlanningEntity()
 @XStreamAlias("Node")
-public class Node extends AbstractPersistable {
+@XmlAccessorType(XmlAccessType.NONE)
+public class Node extends AbstractJaxbPersistable {
 
-    // Planning variables: changes during planning, between score calculations.
+	private static final long serialVersionUID = 1565223932606734061L;
+
+	// Planning variables: changes during planning, between score calculations.
     private Color color;
 
-    private List<Edge> edgeList;
+    private List<Edge> edgeList = new ArrayList<>();
 
-    @PlanningVariable(valueRangeProviderRefs = {"colorRange"})
+    @PlanningVariable(valueRangeProviderRefs = "colorRange")
+    @XmlIDREF
     public Color getColor() {
         return color;
     }

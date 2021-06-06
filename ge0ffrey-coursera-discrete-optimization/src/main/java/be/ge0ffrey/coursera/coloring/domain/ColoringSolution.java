@@ -20,6 +20,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
@@ -28,23 +36,31 @@ import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScore;
-
-import org.optaplanner.examples.common.domain.AbstractPersistable;
+import org.optaplanner.examples.common.domain.AbstractJaxbPersistable;
+import org.optaplanner.persistence.jaxb.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScoreJaxbXmlAdapter;
 import org.optaplanner.persistence.xstream.api.score.buildin.hardmediumsoft.HardMediumSoftScoreXStreamConverter;
 
 @PlanningSolution
 @XStreamAlias("ColoringSolution")
-public class ColoringSolution extends AbstractPersistable {
+@XmlRootElement(name = "ColoringSolution")
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType(propOrder = { "colorList", "nodeList", "edgeList", "score" })
+public class ColoringSolution extends AbstractJaxbPersistable {
 
-    private List<Color> colorList;
+	private static final long serialVersionUID = -8462806439445939948L;
 
+	private List<Color> colorList;
+    
     private List<Node> nodeList;
+    
     private List<Edge> edgeList;
 
     @XStreamConverter(HardMediumSoftScoreXStreamConverter.class)
     private HardMediumSoftLongScore score;
 
     @ValueRangeProvider(id = "colorRange")
+	@XmlElementWrapper
+	@XmlElement(name = "Color")
     public List<Color> getColorList() {
         return colorList;
     }
@@ -54,6 +70,8 @@ public class ColoringSolution extends AbstractPersistable {
     }
 
     @PlanningEntityCollectionProperty
+	@XmlElementWrapper
+	@XmlElement(name = "Node")
     public List<Node> getNodeList() {
         return nodeList;
     }
@@ -62,6 +80,8 @@ public class ColoringSolution extends AbstractPersistable {
         this.nodeList = nodeList;
     }
 
+	@XmlElementWrapper
+	@XmlElement(name = "Edge")
     public List<Edge> getEdgeList() {
         return edgeList;
     }
@@ -71,6 +91,7 @@ public class ColoringSolution extends AbstractPersistable {
     }
 
     @PlanningScore
+    @XmlJavaTypeAdapter(HardMediumSoftLongScoreJaxbXmlAdapter.class)
     public HardMediumSoftLongScore getScore() {
         return score;
     }

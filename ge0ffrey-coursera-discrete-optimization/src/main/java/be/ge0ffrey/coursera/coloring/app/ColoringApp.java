@@ -17,20 +17,21 @@
 package be.ge0ffrey.coursera.coloring.app;
 
 import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
-import be.ge0ffrey.coursera.coloring.persistence.ColoringDao;
+import be.ge0ffrey.coursera.coloring.persistence.ColoringXStreamDao;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringExporter;
 import be.ge0ffrey.coursera.coloring.persistence.ColoringImporter;
+import be.ge0ffrey.coursera.coloring.persistence.ColoringJaxbXmlDao;
 import be.ge0ffrey.coursera.coloring.swingui.ColoringPanel;
-import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.examples.common.app.CommonApp;
 import org.optaplanner.examples.common.persistence.AbstractSolutionExporter;
 import org.optaplanner.examples.common.persistence.AbstractSolutionImporter;
 import org.optaplanner.examples.common.swingui.SolutionPanel;
 import org.optaplanner.persistence.common.api.domain.solution.SolutionFileIO;
-import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
 
 public class ColoringApp extends CommonApp<ColoringSolution> {
 
+	public static final String DATA_DIR_NAME = "coloring";
+	
     public static final String SOLVER_CONFIG
             = "be/ge0ffrey/coursera/coloring/solver/coloringSolverConfig.xml";
 
@@ -42,20 +43,16 @@ public class ColoringApp extends CommonApp<ColoringSolution> {
     public ColoringApp() {
         super("Coloring",
                 "TODO",
-                SOLVER_CONFIG, "coloring", null);
-    }
-
-    protected SolverFactory createSolverFactory() {
-        return SolverFactory.createFromXmlResource(SOLVER_CONFIG);
+                SOLVER_CONFIG, DATA_DIR_NAME, null);
     }
 
     @Override
-    protected SolutionPanel createSolutionPanel() {
+    protected SolutionPanel<ColoringSolution> createSolutionPanel() {
         return new ColoringPanel();
     }
 
     public SolutionFileIO<ColoringSolution> createSolutionFileIO() {
-    	return new ColoringDao();
+    	return new ColoringJaxbXmlDao();
     }
 
     @Override

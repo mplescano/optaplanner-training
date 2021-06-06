@@ -20,9 +20,9 @@ import be.ge0ffrey.coursera.coloring.domain.ColoringSolution;
 
 import org.optaplanner.persistence.xstream.impl.domain.solution.XStreamSolutionFileIO;
 
-public class ColoringDao extends XStreamSolutionFileIO<ColoringSolution> {
+public class ColoringXStreamDao extends XStreamSolutionFileIO<ColoringSolution> {
 
-    public ColoringDao() {
+    public ColoringXStreamDao() {
         super(ColoringSolution.class);
     }
 

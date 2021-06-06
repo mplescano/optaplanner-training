@@ -31,7 +31,7 @@ public class ColoringProblemIO implements SolutionFileIO<ColoringSolution> {
 
     @Override
     public String getInputFileExtension() {
-        return null;
+    	return FILE_EXTENSION;
     }
 
     @Override

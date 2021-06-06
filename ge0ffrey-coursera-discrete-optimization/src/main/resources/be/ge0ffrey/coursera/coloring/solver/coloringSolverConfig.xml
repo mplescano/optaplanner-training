@@ -5,13 +5,14 @@
 
   <!-- Domain model configuration -->
   <solutionClass>be.ge0ffrey.coursera.coloring.domain.ColoringSolution</solutionClass>
-  <planningEntityClass>be.ge0ffrey.coursera.coloring.domain.Node</planningEntityClass>
+  <!-- deprecated <planningEntityClass>be.ge0ffrey.coursera.coloring.domain.Node</planningEntityClass>  -->
+  <entityClass>be.ge0ffrey.coursera.coloring.domain.Node</entityClass>
 
   <!-- Score configuration -->
   <scoreDirectorFactory>
-    <scoreDefinitionType>HARD_MEDIUM_SOFT_LONG</scoreDefinitionType>
-    <!--<easyScoreCalculatorClass>be.ge0ffrey.coursera.coloring.solver.score.ColoringEasyScoreCalculator</easyScoreCalculatorClass>-->
-    <incrementalScoreCalculatorClass>be.ge0ffrey.coursera.coloring.solver.score.ColoringIncrementalScoreCalculator</incrementalScoreCalculatorClass>
+    <!-- deprecated <scoreDefinitionType>HARD_MEDIUM_SOFT_LONG</scoreDefinitionType>-->
+    <easyScoreCalculatorClass>be.ge0ffrey.coursera.coloring.solver.score.ColoringEasyScoreCalculator</easyScoreCalculatorClass>
+    <!-- <incrementalScoreCalculatorClass>be.ge0ffrey.coursera.coloring.solver.score.ColoringIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
     <initializingScoreTrend>ONLY_DOWN/ONLY_DOWN/ONLY_UP</initializingScoreTrend>
     <!--<assertionScoreDirectorFactory>-->
       <!--<easyScoreCalculatorClass>be.ge0ffrey.coursera.coloring.solver.score.ColoringEasyScoreCalculator</easyScoreCalculatorClass>-->

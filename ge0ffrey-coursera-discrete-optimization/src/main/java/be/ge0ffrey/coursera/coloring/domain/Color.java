@@ -17,13 +17,22 @@
 package be.ge0ffrey.coursera.coloring.domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import org.optaplanner.examples.common.domain.AbstractPersistable;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
+import org.optaplanner.examples.common.domain.AbstractJaxbPersistable;
 
 @XStreamAlias("Color")
-public class Color extends AbstractPersistable {
+@XmlAccessorType(XmlAccessType.NONE)
+public class Color extends AbstractJaxbPersistable {
+
+	private static final long serialVersionUID = 4824023797233597822L;
 
     // ************************************************************************
     // Complex methods
     // ************************************************************************
 
+	
+	
 }

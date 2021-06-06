@@ -17,31 +17,42 @@
 package be.ge0ffrey.coursera.coloring.domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import org.optaplanner.core.api.domain.entity.PlanningEntity;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlIDREF;
 import org.optaplanner.core.api.domain.solution.cloner.DeepPlanningClone;
-import org.optaplanner.examples.common.domain.AbstractPersistable;
+import org.optaplanner.examples.common.domain.AbstractJaxbPersistable;
 
 @DeepPlanningClone
 @XStreamAlias("Edge")
-public class Edge extends AbstractPersistable {
+@XmlAccessorType(XmlAccessType.NONE)
+public class Edge extends AbstractJaxbPersistable {
 
-    private Node leftNode;
+	private static final long serialVersionUID = 5697350285493272148L;
+
+	private Node leftNode;
+    
     private Node rightNode;
 
+	@XmlIDREF
     public Node getLeftNode() {
         return leftNode;
     }
 
     public void setLeftNode(Node leftNode) {
         this.leftNode = leftNode;
+        this.leftNode.getEdgeList().add(this);
     }
 
+    @XmlIDREF
     public Node getRightNode() {
         return rightNode;
     }
 
     public void setRightNode(Node rightNode) {
         this.rightNode = rightNode;
+        this.rightNode.getEdgeList().add(this);
     }
     // ************************************************************************
     // Complex methods

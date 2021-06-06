@@ -25,18 +25,14 @@ import be.ge0ffrey.coursera.coloring.domain.Edge;
 import be.ge0ffrey.coursera.coloring.domain.Node;
 import org.optaplanner.core.api.score.buildin.hardmediumsoftlong.HardMediumSoftLongScore;
 import org.optaplanner.core.api.score.calculator.EasyScoreCalculator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ColoringEasyScoreCalculator implements EasyScoreCalculator<ColoringSolution, HardMediumSoftLongScore> {
+	
+	protected final transient Logger logger = LoggerFactory.getLogger(getClass());
 
     public HardMediumSoftLongScore calculateScore(ColoringSolution coloringSolution) {
-        long hardScore = 0L;
-        for (Edge edge : coloringSolution.getEdgeList()) {
-            Color leftColor = edge.getLeftNode().getColor();
-            Color rightColor = edge.getRightNode().getColor();
-            if (leftColor != null && leftColor == rightColor) {
-                hardScore--;
-            }
-        }
         Map<Color, Integer> colorCountMap = new HashMap<Color, Integer>(coloringSolution.getColorList().size());
         for (Node node : coloringSolution.getNodeList()) {
             Color color = node.getColor();
@@ -45,6 +41,16 @@ public class ColoringEasyScoreCalculator implements EasyScoreCalculator<Coloring
                 colorCountMap.put(color, (colorCount == null ? 1 : colorCount + 1));
             }
         }
+        
+        long hardScore = 0L;
+        for (Edge edge : coloringSolution.getEdgeList()) {
+            Color leftColor = edge.getLeftNode().getColor();
+            Color rightColor = edge.getRightNode().getColor();
+            if (leftColor != null && leftColor == rightColor) {
+                hardScore--;
+            }
+        }
+        
         long mediumScore = - colorCountMap.size();
         long softScore = 0L;
         for (Integer colorCount : colorCountMap.values()) {
