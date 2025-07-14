@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/optaplanner-training-lab101-solution/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab101/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab102-solution/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab102/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab103-solution/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab103/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab901-solution/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab901/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab902-solution/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab902/pom.xml" />
+        <option value="$PROJECT_DIR$/optaplanner-training-lab903/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="openjdk-11" project-jdk-type="JavaSDK" />
+</project>

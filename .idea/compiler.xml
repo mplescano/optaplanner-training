@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="optaplanner-training-lab906" />
+        <module name="optaplanner-training-lab905-solution" />
+        <module name="optaplanner-training-lab2-cloud-balancing-tutorial" />
+        <module name="optaplanner-training-lab905" />
+        <module name="optaplanner-training-lab0-nqueens" />
+        <module name="optaplanner-commons" />
+        <module name="optaplanner-training-lab906-solution" />
+        <module name="ge0ffrey-coursera-discrete-optimization" />
+        <module name="optaplanner-training-lab0-eugenp-tutorials" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="optaplanner-training-lab101" target="1.8" />
+      <module name="optaplanner-training-lab101-solution" target="1.8" />
+      <module name="optaplanner-training-lab102" target="1.8" />
+      <module name="optaplanner-training-lab102-solution" target="1.8" />
+      <module name="optaplanner-training-lab103" target="1.8" />
+      <module name="optaplanner-training-lab103-solution" target="1.8" />
+      <module name="optaplanner-training-lab901" target="1.8" />
+      <module name="optaplanner-training-lab901-solution" target="1.8" />
+      <module name="optaplanner-training-lab902" target="1.8" />
+      <module name="optaplanner-training-lab902-solution" target="1.8" />
+      <module name="optaplanner-training-lab903" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

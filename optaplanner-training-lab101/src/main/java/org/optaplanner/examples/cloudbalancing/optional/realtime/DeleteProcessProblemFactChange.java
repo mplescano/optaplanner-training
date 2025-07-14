@@ -16,9 +16,6 @@
 
 package org.optaplanner.examples.cloudbalancing.optional.realtime;
 
-import java.util.Iterator;
-import java.util.Objects;
-
 import org.optaplanner.core.impl.score.director.ScoreDirector;
 import org.optaplanner.core.impl.solver.ProblemFactChange;
 import org.optaplanner.examples.cloudbalancing.domain.CloudBalance;

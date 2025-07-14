@@ -18,16 +18,17 @@ package org.optaplanner.training.election.domain;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
-import org.optaplanner.training.election.optional.domain.FederalStateDifficultyComparator;
+import org.optaplanner.training.election.comparator.CandidateComparator;
+import org.optaplanner.training.election.comparator.FederalStateComparator;
 
-@PlanningEntity(difficultyComparatorClass = FederalStateDifficultyComparator.class)
+@PlanningEntity(difficultyComparatorClass = FederalStateComparator.class)
 public class FederalState {
 
     private String name;
     private int population;
     private int electoralVotes;
 
-    @PlanningVariable(valueRangeProviderRefs = {"candidateRange"})
+    @PlanningVariable(valueRangeProviderRefs = {"candidates"}, strengthComparatorClass = CandidateComparator.class)
     private String winningCandidate;
 
     private FederalState() {

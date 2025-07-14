@@ -7,10 +7,7 @@
   <groupId>org.optaplanner.training</groupId>
   <artifactId>optaplanner-training</artifactId>
   <packaging>pom</packaging>
-  <!-- Keep in sync with optaplanner-training-generator/build.xml project.version -->
-  <!-- Keep in sync with child module pom.xml's parent's version -->
-  <!-- Keep in sync with dependency kie-platform-bom's version -->
-  <version>7.0.0.Beta4-training-4</version>
+  <version>7.15.0-ocs</version>
 
   <name>OptaPlanner training</name>
   <description>
@@ -20,6 +17,13 @@
 
     This module contains the training labs.
   </description>
+
+  <properties>
+    <optaplaner.version>7.35.0.Final</optaplaner.version>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
 
   <repositories>
     <!-- Included so it builds out-of-the-box with maven, even for snapshots -->
@@ -84,13 +88,9 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.5.1</version>
+          <version>3.8.1</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-            <fork>true</fork>
-            <meminitial>128m</meminitial>
-            <maxmem>512m</maxmem>
+            <release>11</release>
           </configuration>
         </plugin>
       </plugins>
@@ -104,31 +104,90 @@
         <artifactId>kie-platform-bom</artifactId>
         <type>pom</type>
         <!-- Keep in sync with part of project version -->
-        <version>7.32.0.Final</version>
+        <version>${optaplaner.version}</version>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.optaplanner</groupId>
         <artifactId>optaplanner</artifactId>
-        <version>7.32.0.Final</version>
+        <version>${optaplaner.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
       <dependency>
-        <groupId>org.optaplanner</groupId>
-        <artifactId>optaplanner-training-lab101</artifactId>
-        <version>${project.version}</version>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.30</version>
       </dependency>
       <dependency>
-        <groupId>org.optaplanner</groupId>
-        <artifactId>optaplanner-training-assembly</artifactId>
-        <type>pom</type>
-        <version>${project.version}</version>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.6</version>
       </dependency>
+      <dependency>
+        <groupId>org.jfree</groupId>
+        <artifactId>jfreechart</artifactId>
+        <version>1.5.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jfree</groupId>
+        <artifactId>jcommon</artifactId>
+        <version>1.0.23</version>
+      </dependency>
+      <!-- Common utils -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>28.0-jre</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+      <!-- XML -->
+      <dependency>
+        <groupId>com.thoughtworks.xstream</groupId>
+        <artifactId>xstream</artifactId>
+        <version>1.4.11.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jdom</groupId>
+        <artifactId>jdom</artifactId>
+        <version>1.1.3</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.12.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.12.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>5.12.2</version>
+        <scope>test</scope>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
   <modules>
+    <module>optaplanner-commons</module>
     <module>optaplanner-training-lab101</module>
     <module>optaplanner-training-lab101-solution</module>
     <module>optaplanner-training-lab102</module>
@@ -137,9 +196,10 @@
     <module>optaplanner-training-lab103-solution</module>
     <module>optaplanner-training-lab901</module>
     <module>optaplanner-training-lab901-solution</module>
-    <module>optaplanner-training-lab902</module>
-    <module>optaplanner-training-lab902-solution</module>
-    <module>optaplanner-training-lab903</module>
+    <module>optaplanner-training-lab905</module>
+    <module>optaplanner-training-lab905-solution</module>
+    <module>optaplanner-training-lab906</module>
+    <module>optaplanner-training-lab906-solution</module>
     <module>ge0ffrey-coursera-discrete-optimization</module>
     <module>instructions/lab0/eugenp-tutorials</module>
     <module>instructions/lab0/nqueens</module>
@@ -147,18 +207,6 @@
   </modules>
 
   <profiles>
-    <profile>
-      <id>fullProfile</id>
-      <activation>
-        <property>
-          <name>full</name>
-        </property>
-      </activation>
-      <modules>
-        <module>optaplanner-training-docs</module>
-        <module>optaplanner-training-assembly</module>
-      </modules>
-    </profile>
     <profile>
       <id>productizedProfile</id>
       <activation>

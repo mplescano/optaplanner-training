@@ -16,15 +16,13 @@
 
 package org.optaplanner.examples.cloudbalancing.optional.realtime;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
-
 import org.optaplanner.core.impl.score.director.ScoreDirector;
 import org.optaplanner.core.impl.solver.ProblemFactChange;
 import org.optaplanner.examples.cloudbalancing.domain.CloudBalance;
 import org.optaplanner.examples.cloudbalancing.domain.CloudComputer;
 import org.optaplanner.examples.cloudbalancing.domain.CloudProcess;
+
+import java.util.ArrayList;
 
 public class DeleteComputerProblemFactChange implements ProblemFactChange<CloudBalance> {
 
@@ -36,7 +34,7 @@ public class DeleteComputerProblemFactChange implements ProblemFactChange<CloudB
 
     public void doChange(ScoreDirector<CloudBalance> scoreDirector) {
         CloudBalance cloudBalance = scoreDirector.getWorkingSolution();
-        CloudComputer workingComputer = scoreDirector.locateWorkingObject(computer);
+        CloudComputer workingComputer = scoreDirector.lookUpWorkingObject(computer);
         if (workingComputer == null) {
             // The computer has already been deleted (the UI asked to changed the same computer twice), so do nothing
             return;

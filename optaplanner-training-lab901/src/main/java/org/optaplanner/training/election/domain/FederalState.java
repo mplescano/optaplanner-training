@@ -16,13 +16,17 @@
 
 package org.optaplanner.training.election.domain;
 
+import org.optaplanner.core.api.domain.entity.PlanningEntity;
+import org.optaplanner.core.api.domain.variable.PlanningVariable;
 
+@PlanningEntity
 public class FederalState {
 
     private String name;
     private int population;
     private int electoralVotes;
 
+    @PlanningVariable(valueRangeProviderRefs = {"candidates"})
     private String winningCandidate;
 
     private FederalState() {

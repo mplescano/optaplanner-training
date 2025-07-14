@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.optaplanner.training</groupId>
 		<artifactId>optaplanner-training</artifactId>
-		<version>7.0.0.Beta4-training-4</version>
+		<version>7.15.0-ocs</version>
 		<relativePath>../../../pom.xml</relativePath>
 	</parent>
 

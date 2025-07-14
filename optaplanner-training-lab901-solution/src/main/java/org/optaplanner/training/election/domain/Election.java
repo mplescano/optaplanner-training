@@ -16,13 +16,16 @@
 
 package org.optaplanner.training.election.domain;
 
-import java.util.List;
-
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
+import org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
+
+import java.util.Arrays;
+import java.util.List;
+
 
 @PlanningSolution
 public class Election {
@@ -31,13 +34,13 @@ public class Election {
     // The candidate that games the system to win
     public static final String GAMER_CANDIDATE = "Gamer candidate";
 
-    @ValueRangeProvider(id = "candidateRange")
+    private HardSoftScore score;
+
+
     private String[] candidates = new String[]{NORMAL_CANDIDATE, GAMER_CANDIDATE};
-    @PlanningEntityCollectionProperty
+
     private List<FederalState> federalStateList;
 
-    @PlanningScore
-    private HardSoftScore score;
 
     private Election() {
     }
@@ -46,12 +49,23 @@ public class Election {
         this.federalStateList = federalStateList;
     }
 
+    @PlanningEntityCollectionProperty
     public List<FederalState> getFederalStateList() {
         return federalStateList;
     }
 
+    @PlanningScore
     public HardSoftScore getScore() {
         return score;
     }
 
+    public void setScore(final HardSoftScore score) {
+        this.score = score;
+    }
+
+    @ValueRangeProvider(id = "candidates")
+    @ProblemFactCollectionProperty
+    public List<String> getCandidates() {
+        return Arrays.asList(candidates);
+    }
 }

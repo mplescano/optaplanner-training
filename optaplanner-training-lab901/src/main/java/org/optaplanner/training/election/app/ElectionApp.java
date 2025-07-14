@@ -16,6 +16,11 @@
 
 package org.optaplanner.training.election.app;
 
+import org.optaplanner.core.api.solver.Solver;
+import org.optaplanner.core.api.solver.SolverFactory;
+import org.optaplanner.training.election.domain.Election;
+import org.optaplanner.training.election.domain.FederalState;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,16 +30,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.optaplanner.training.election.domain.Election;
-import org.optaplanner.training.election.domain.FederalState;
-
 public class ElectionApp {
 
     public static void main(String[] args) {
         Election election = readElection();
+        // Build the Solver
+        SolverFactory<Election> solverFactory = SolverFactory.createFromXmlResource(
+                "SolverConfiguration.xml");
+        Solver<Election> solver = solverFactory.buildSolver();
 
-        // TODO Implement this lab
-
+        election = solver.solve(election);
         printElection(election);
     }
 

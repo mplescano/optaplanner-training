@@ -90,8 +90,6 @@ public class CloudProcess extends AbstractPersistable {
         return "Process " + id;
     }
 
-
-      
     // ############################################################################
     // Solution lab102
     // ############################################################################
@@ -109,6 +107,5 @@ public class CloudProcess extends AbstractPersistable {
         }
         return requiredCpuPower * 2 - computer.getCpuPower();
     }
-}
 
-    
+}
